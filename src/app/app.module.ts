@@ -5,12 +5,18 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthComponent } from './auth/auth.component';
 import { HomeContentComponent } from './home-content/home-content.component';
+import { CodeEditorComponent } from './code-editor/code-editor.component';
+import { ExercisesComponent } from './exercises/exercises.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
-    HomeContentComponent
+    HomeContentComponent,
+    CodeEditorComponent,
+    ExercisesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
