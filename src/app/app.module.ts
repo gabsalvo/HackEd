@@ -7,7 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeContentComponent } from './home-content/home-content.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { ExercisesComponent } from './exercises/exercises.component';
-import { ProfileComponent } from './profile/profile.component';
+import { UserComponent } from './user/user.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { FormsModule } from '@angular/forms';
@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
     HomeContentComponent,
     CodeEditorComponent,
     ExercisesComponent,
-    ProfileComponent
+    UserComponent
   ],
   imports: [
     BrowserModule,
