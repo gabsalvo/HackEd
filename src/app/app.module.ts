@@ -8,6 +8,10 @@ import { HomeContentComponent } from './home-content/home-content.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { ProfileComponent } from './profile/profile.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +24,9 @@ import { ProfileComponent } from './profile/profile.component';
   ],
   imports: [
     BrowserModule,
+    EditorModule, 
+    MonacoEditorModule.forRoot(),
+    FormsModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
