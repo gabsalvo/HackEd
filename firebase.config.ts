@@ -83,7 +83,7 @@ async function sendNotification() {
   try {
     const user = auth.currentUser;
     if (user) {
-      const response = await fetch('http://127.0.0.1:5001/hacked23-24/us-central1/sendNotification', {
+      const response = await fetch('https://us-central1-hacked23-24.cloudfunctions.net/sendNotification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
