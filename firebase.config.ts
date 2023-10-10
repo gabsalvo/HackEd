@@ -79,6 +79,27 @@ async function getNotificationPermission() {
   }
 }
 
+async function sendNotification() {
+  try {
+    const user = auth.currentUser;
+    if (user) {
+      const response = await fetch('/sendNotification', { // Assicurati che questa sia l'URL corretta della tua Cloud Function
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ uid: user.uid }) // Invia l'UID dell'utente al backend
+      });
+      const data = await response.json();
+      console.log(data);
+    } else {
+      console.warn("Utente non autenticato.");
+    }
+  } catch (error) {
+    console.error('Errore durante l\'invio della notifica:', error);
+  }
+}
+
 
 onMessage(messaging, (payload) => {
   console.log('Notifica ricevuta:', payload);
@@ -87,4 +108,5 @@ onMessage(messaging, (payload) => {
 
 export { loginWithGoogle };
 export { getNotificationPermission };
+export { sendNotification };
 export { auth };

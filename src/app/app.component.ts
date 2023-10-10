@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getNotificationPermission, auth } from '../../firebase.config';
+import { sendNotification } from '../../firebase.config';
 import { onAuthStateChanged } from 'firebase/auth';
 
 @Component({
@@ -9,6 +10,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 })
 export class AppComponent implements OnInit {
   title = 'HackEd';
+  sendNotification = sendNotification;
 
   ngOnInit(): void {
     onAuthStateChanged(auth, (user) => {
