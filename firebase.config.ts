@@ -83,12 +83,12 @@ async function sendNotification() {
   try {
     const user = auth.currentUser;
     if (user) {
-      const response = await fetch('/sendNotification', { // Assicurati che questa sia l'URL corretta della tua Cloud Function
+      const response = await fetch('http://127.0.0.1:5001/hacked23-24/us-central1/sendNotification', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ uid: user.uid }) // Invia l'UID dell'utente al backend
+        body: JSON.stringify({ uid: user.uid })
       });
       const data = await response.json();
       console.log(data);
@@ -102,8 +102,24 @@ async function sendNotification() {
 
 
 onMessage(messaging, (payload) => {
-  console.log('Notifica ricevuta:', payload);
-  // Puoi mostrare una notifica usando l'API di notifica del browser o qualsiasi altro metodo preferisci
+  console.log('Notifica da onMessage:', payload);
+
+  if (payload.notification) {
+    const notificationTitle = payload.notification.title || 'Titolo predefinito'; // default in caso sia undefined
+    const notificationOptions = {
+      body: payload.notification.body || 'Corpo predefinito', // default in caso sia undefined
+      // Qui puoi aggiungere altre opzioni come icone, suoni, ecc.
+    };
+
+    // Mostra la notifica
+    if (Notification.permission === "granted") {
+      new Notification(notificationTitle, notificationOptions);
+    } else {
+      console.warn("Permesso per le notifiche non concesso.");
+    }
+  } else {
+    console.warn("Notifica senza contenuto.");
+  }
 });
 
 export { loginWithGoogle };
