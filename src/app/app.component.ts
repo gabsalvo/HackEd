@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { getNotificationPermission, auth } from '../../firebase.config';
+import { getNotificationPermission } from '../../firebase.config';
 import { sendNotification } from '../../firebase.config';
-import { onAuthStateChanged } from 'firebase/auth';
+import { AuthService } from './services/on-auth.service'; // Importa il servizio AuthService
 
 @Component({
   selector: 'app-root',
@@ -12,8 +12,11 @@ export class AppComponent implements OnInit {
   title = 'HackEd';
   sendNotification = sendNotification;
 
+  constructor(private authService: AuthService) {} // Inietta il servizio AuthService nel costruttore
+
   ngOnInit(): void {
-    onAuthStateChanged(auth, (user) => {
+    // Sottoscrivi l'Observable user$ del servizio
+    this.authService.user$.subscribe(user => {
       if (user) { // Se l'utente è autenticato
         this.requestNotificationPermission();
       }

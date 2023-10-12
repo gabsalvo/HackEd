@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 export class CodeEditorComponent {
   editorOptions = {theme: 'vs-dark', language: 'javascript'};
   code: string= 'function x() {\nconsole.log("Hello world!");\n}';
+  languageId: string = '63';
+  output: string = '';
 }
+
+

@@ -11,6 +11,7 @@ import { UserComponent } from './user/user.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -20,13 +21,14 @@ import { FormsModule } from '@angular/forms';
     HomeContentComponent,
     CodeEditorComponent,
     ExercisesComponent,
-    UserComponent
+    UserComponent,
   ],
   imports: [
     BrowserModule,
     EditorModule, 
     MonacoEditorModule.forRoot(),
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

@@ -1,4 +1,14 @@
 <div class="authe">
-<h1>Login</h1>
-<button (click)="onGoogleLogin()">Login con Google</button>
+  <h1>Login</h1>
+  <button [disabled]="isLogged" (click)="onGoogleLogin()">Login con Google</button>
+  <button *ngIf="isLogged" (click)="onGoogleLogout()">Logout</button>
+
+  <!-- Popup per la selezione dell'username -->
+  <div *ngIf="showUsernamePopup" class="popup">
+    <h2>Pick an Username</h2>
+    <input type="text" [(ngModel)]="username" placeholder="Inserisci username" />
+    <button (click)="saveUsername()">Salva</button>
+    <h2>Give me a Random One</h2>
+    <button (click)=" usernameToServer()">Random</button>
+  </div>
 </div>

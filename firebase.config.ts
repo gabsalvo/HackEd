@@ -1,10 +1,9 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-import { getFirestore, doc, setDoc } from 'firebase/firestore';
-import { getRandomUsername } from 'randomUsername';
+import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -29,24 +28,41 @@ const auth = getAuth();
 const messaging = getMessaging(app);
 const db = getFirestore();
 
-async function loginWithGoogle() {
+function delay(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function loginWithGoogle(callback: () => void) {
   try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-    console.log('Logged in user:', user);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      console.log('Logged in user:', user);
 
-    // Ottieni un nome utente casuale dall'API
-    const randomUsername = await getRandomUsername();
+      const userRef = doc(db, 'users', user.uid);
 
-    // Salva l'email dell'utente e il nome utente casuale nel database
-    const userRef = doc(db, 'users', user.uid);
-    await setDoc(userRef, {
-      email: user.email,
-      username: randomUsername
-    }, { merge: true });
+      // Attendi 5 secondi prima di leggere il documento
+      await delay(2500);
+
+      const userSnapshot = await getDoc(userRef);
+
+      if (userSnapshot.get('registrationCompleted') !== true) {
+        console.log(userSnapshot.get('registrationCompleted'));
+        console.log('Showing the popup...');
+          callback(); // Mostra il popup per selezionare l'username
+      }
 
   } catch (error) {
-    console.error('Error logging in:', error);
+      console.error('Error logging in:', error);
+  }
+}
+
+
+async function logoutFromGoogle() {
+  try {
+      await signOut(auth);
+      console.log('Logged out successfully');
+  } catch (error) {
+      console.error('Error logging out:', error);
   }
 }
 
@@ -123,6 +139,9 @@ onMessage(messaging, (payload) => {
 });
 
 export { loginWithGoogle };
+export { logoutFromGoogle };
 export { getNotificationPermission };
 export { sendNotification };
 export { auth };
+export { db };
+
