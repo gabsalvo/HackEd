@@ -13,6 +13,7 @@ import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
+import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { OfflinePageComponent } from './offline-page/offline-page.component';
     ExercisesComponent,
     UserComponent,
     OfflinePageComponent,
+    HelloSecurityComponent,
   ],
   imports: [
     BrowserModule,
