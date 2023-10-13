@@ -1,5 +1,5 @@
 <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
-<button>Run Code</button>
+<button (click)="runCode()">Run Code</button>
 <div class="output_window">
     <h2>Output</h2>
     {{ output }}
