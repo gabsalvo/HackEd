@@ -11,7 +11,8 @@
           "/index.html",
           "/manifest.webmanifest",
           "/*.css",
-          "/*.js"
+          "/*.js",
+          "/offline-page.component.html"
         ]
       }
     },
@@ -26,5 +27,18 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "fallback",
+      "urls": ["/**"],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxSize": 100,
+        "maxAge": "1d",
+        "timeout": "5s"
+      }
+    }
   ]
+
 }

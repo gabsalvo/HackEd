@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { getNotificationPermission, sendNotification, sendNotificationDelayed } from '../../firebase.config';
-import { AuthService } from './services/on-auth.service'; // Importa il servizio AuthService
+import { AuthService } from './services/on-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,9 +12,12 @@ export class AppComponent implements OnInit {
   sendNotification = sendNotification;
   sendNotificationDelayed = sendNotificationDelayed;
 
-  constructor(private authService: AuthService) {} // Inietta il servizio AuthService nel costruttore
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    // Registra il service worker
+    this.registerServiceWorker();
+
     // Sottoscrivi l'Observable user$ del servizio
     this.authService.user$.subscribe(user => {
       if (user) { // Se l'utente è autenticato
@@ -25,5 +28,17 @@ export class AppComponent implements OnInit {
 
   async requestNotificationPermission() {
     await getNotificationPermission();
+  }
+
+  private registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/firebase-messaging-sw.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
   }
 }
