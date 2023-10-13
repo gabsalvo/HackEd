@@ -12,6 +12,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { OfflinePageComponent } from './offline-page/offline-page.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     CodeEditorComponent,
     ExercisesComponent,
     UserComponent,
+    OfflinePageComponent,
   ],
   imports: [
     BrowserModule,

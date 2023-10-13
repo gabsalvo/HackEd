@@ -10,3 +10,16 @@ importScripts("https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging-compa
     vapidKey: 'BKOIvinydaKL00iJbhKrJNOQVuqq6lYM5jC8-1oyiI4OVLdBsB7X82XG_dSkvZmDD0tp-k2owyuE4_TUjaRmKo8'
 });
 const messaging = firebase.messaging();
+messaging.onBackgroundMessage((payload) => {
+    console.log('Ricevuto messaggio in background:', payload);
+    
+    // Personalizza la notifica visualizzata
+    const notificationTitle = payload.notification.title;
+    const notificationOptions = {
+      body: payload.notification.body,
+      // Aggiungi altre opzioni come icone, suoni, ecc. se necessario
+    };
+  
+    // Mostra la notifica all'utente
+    self.registration.showNotification(notificationTitle, notificationOptions);
+  });

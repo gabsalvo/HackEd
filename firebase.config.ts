@@ -116,6 +116,30 @@ async function sendNotification() {
   }
 }
 
+async function sendNotificationDelayed() {
+  try {
+    const user = auth.currentUser;
+    const delay = 3000; // 10 secondi
+
+    if (user) {
+      const response = await fetch('https://us-central1-hacked23-24.cloudfunctions.net/sendNotificationDelayed', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ uid: user.uid, delay: delay })
+      });
+      const data = await response.json();
+      console.log(data);
+      console.log("bg data")
+    } else {
+      console.warn("Utente non autenticato.");
+    }
+  } catch (error) {
+    console.error('Errore durante l\'invio della notifica:', error);
+  }
+}
+
 
 onMessage(messaging, (payload) => {
   console.log('Notifica da onMessage:', payload);
@@ -142,6 +166,7 @@ export { loginWithGoogle };
 export { logoutFromGoogle };
 export { getNotificationPermission };
 export { sendNotification };
+export { sendNotificationDelayed };
 export { auth };
 export { db };
 

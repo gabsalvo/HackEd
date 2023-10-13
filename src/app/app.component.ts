@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { getNotificationPermission } from '../../firebase.config';
-import { sendNotification } from '../../firebase.config';
+import { getNotificationPermission, sendNotification, sendNotificationDelayed } from '../../firebase.config';
 import { AuthService } from './services/on-auth.service'; // Importa il servizio AuthService
 
 @Component({
@@ -11,6 +10,7 @@ import { AuthService } from './services/on-auth.service'; // Importa il servizio
 export class AppComponent implements OnInit {
   title = 'HackEd';
   sendNotification = sendNotification;
+  sendNotificationDelayed = sendNotificationDelayed;
 
   constructor(private authService: AuthService) {} // Inietta il servizio AuthService nel costruttore
 
