@@ -7,7 +7,7 @@ import {
 } from '../../../firebase.config';
 import { AuthService } from '../services/on-auth.service';
 import { getRandomUsername } from 'randomUsername';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
 
 @Component({
   selector: 'app-auth',
@@ -19,6 +19,14 @@ export class AuthComponent implements OnInit {
   isLogged: boolean = false;
   showUsernamePopup: boolean = false;
   username: string = '';
+  clans: string[] = [
+    'Binary Battlers',
+    'Crypto Crusaders',
+    'Network Nomads',
+    'System Sentinels',
+  ];
+  selectedClan: string = '';
+  clanSelected: boolean = false;
 
   constructor(private authService: AuthService) {}
 
@@ -65,7 +73,9 @@ export class AuthComponent implements OnInit {
             username: randomUsername,
             registrationCompleted: true,
             level: 1,
-            exercises_solved : 0
+            exercises_solved: 0,
+            clan: this.selectedClan,
+            exp: 0,
           },
           { merge: true }
         );
@@ -94,17 +104,39 @@ export class AuthComponent implements OnInit {
             username: this.username,
             registrationCompleted: true,
             level: 1,
-            exercises_solved : 0
+            exercises_solved: 0,
+            clan: this.selectedClan,
+            exp: 0,
           },
           { merge: true }
         );
-
         this.showUsernamePopup = false;
       } else {
         alert('No user uid found');
       }
     } else {
       alert('Inserisci un username valido!');
+    }
+  }
+  onClanSelected() {
+    if (this.selectedClan) {
+      this.clanSelected = true;
+    }
+  }
+  async abortLogin() {
+    if (auth.currentUser) {
+      const uid = auth.currentUser.uid;
+      const userRef = doc(db, 'users', uid);
+  
+      // Cancella l'utente dal database
+      await deleteDoc(userRef);
+  
+      // Logout dall'utente
+      await logoutFromGoogle();
+      this.isLogged = false;
+  
+      // Chiudi il popup
+      this.showUsernamePopup = false;
     }
   }
 }

@@ -3,12 +3,23 @@
   <button [disabled]="isLogged" (click)="onGoogleLogin()">Login con Google</button>
   <button *ngIf="isLogged" (click)="onGoogleLogout()">Logout</button>
 
-  <!-- Popup per la selezione dell'username -->
+  <!-- Popup per la selezione dell'username e del clan -->
   <div *ngIf="showUsernamePopup" class="popup">
-    <h2>Pick an Username</h2>
-    <input type="text" [(ngModel)]="username" placeholder="Inserisci username" />
-    <button (click)="saveUsername()">Salva</button>
-    <h2>Give me a Random One</h2>
-    <button (click)=" usernameToServer()">Random</button>
+    <button class="close-popup" (click)="abortLogin()">X</button>
+
+    <h2>Choose Your Clan</h2>
+    <h3>Careful It can't be Changed</h3>
+    <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
+      <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
+    </select>
+
+    <div *ngIf="clanSelected"> <!-- Mostra questa sezione solo se un clan è stato selezionato -->
+      <h2>Pick an Username</h2>
+      <input type="text" [(ngModel)]="username" placeholder="Inserisci username" />
+      <button (click)="saveUsername()">Salva</button>
+      <h2>Give me a Random One</h2>
+      <button (click)="usernameToServer()">Random</button>
+    </div>
+    
   </div>
 </div>

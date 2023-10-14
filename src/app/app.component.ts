@@ -27,8 +27,11 @@ export class AppComponent implements OnInit {
   }
 
   async requestNotificationPermission() {
-    await getNotificationPermission();
-  }
+    setTimeout(async () => {
+        await getNotificationPermission();
+    }, 2000); // 2000ms ovvero 2 secondi di ritardo
+}
+
 
   private registerServiceWorker() {
     if ('serviceWorker' in navigator) {

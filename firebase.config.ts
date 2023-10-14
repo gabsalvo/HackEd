@@ -6,8 +6,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
+  deleteUser
 } from 'firebase/auth';
-import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import { getMessaging, getToken, onMessage, deleteToken } from 'firebase/messaging';
 import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -160,6 +161,35 @@ async function sendNotificationDelayed() {
   }
 }
 
+/*async function revokeNotificationToken() {
+  try {
+    const currentToken = await getToken(messaging);
+    if (currentToken) {
+      await deleteToken(messaging); // Only the messaging instance is needed
+      console.log('Notification token revoked.');
+    } else {
+      console.log('No notification token available.');
+    }
+  } catch (error) {
+    console.error('Error revoking notification token:', error);
+  }
+}*/
+
+async function removeUser() {
+  const auth = getAuth();
+
+  if (auth.currentUser) {
+    try {
+      await deleteUser(auth.currentUser);
+      console.log('Utente eliminato con successo da Firebase Auth.');
+    } catch (error) {
+      console.error('Errore durante l\'eliminazione dell\'utente da Firebase Auth:', error);
+    }
+  } else {
+    console.log('Nessun utente autenticato per essere eliminato.');
+  }
+}
+
 onMessage(messaging, (payload) => {
   console.log('Notifica da onMessage:', payload);
 
@@ -182,10 +212,14 @@ onMessage(messaging, (payload) => {
   }
 });
 
+
+
 export { loginWithGoogle };
 export { logoutFromGoogle };
 export { getNotificationPermission };
 export { sendNotification };
 export { sendNotificationDelayed };
+//export { revokeNotificationToken };
+export { removeUser };
 export { auth };
 export { db };
