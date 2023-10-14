@@ -7,8 +7,7 @@ import { UserComponent } from './user/user.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
-
-
+import { TrophiesComponent } from './trophies/trophies.component';
 
 const routes: Routes = [
   { path: 'offline', component: OfflinePageComponent },
@@ -16,6 +15,7 @@ const routes: Routes = [
   { path: 'auth', component:  AuthComponent }, 
   { path: 'code', component: CodeEditorComponent},
   { path: 'user', component: UserComponent },
+  { path: 'trophies', component: TrophiesComponent },
   { path: 'exercises', component: ExercisesComponent },
   { path: 'exercises/1-hello-security', component: HelloSecurityComponent},
 ];

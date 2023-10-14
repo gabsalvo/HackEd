@@ -65,6 +65,7 @@ export class AuthComponent implements OnInit {
             username: randomUsername,
             registrationCompleted: true,
             level: 1,
+            exercises_solved : 0
           },
           { merge: true }
         );
@@ -93,6 +94,7 @@ export class AuthComponent implements OnInit {
             username: this.username,
             registrationCompleted: true,
             level: 1,
+            exercises_solved : 0
           },
           { merge: true }
         );

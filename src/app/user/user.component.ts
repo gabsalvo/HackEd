@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { auth, db } from 'firebase.config';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { AuthService } from '../services/on-auth.service'; // Importa il servizio AuthService
+import { doc, getDoc } from 'firebase/firestore';
+import { AuthService } from '../services/on-auth.service'; 
 
 @Component({
   selector: 'app-profile',
