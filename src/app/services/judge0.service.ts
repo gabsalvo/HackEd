@@ -11,10 +11,10 @@ export class Judge0Service {
   processing: boolean = false;
   outputDetails: string = "";
 
-  async handleCompile(code: string, customInput: string): Promise<string> {
+  async handleCompile(code: string, customInput: string, languageId: number): Promise<string> {
     this.processing = true;
     const formData = {
-        language_id: 63,
+        language_id: languageId,
         source_code: btoa(code),
         stdin: btoa(customInput)
     };

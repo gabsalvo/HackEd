@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Judge0Service } from '../services/judge0.service';
 
 @Component({
@@ -7,16 +7,17 @@ import { Judge0Service } from '../services/judge0.service';
   styleUrls: ['./code-editor.component.css']
 })
 export class CodeEditorComponent {
-  editorOptions = {theme: 'vs-dark', language: 'javascript'};
-  code: string = 'console.log("Hello world!");';
-  languageId: string = '63';
+  @Input() editorOptions = {theme: 'vs-dark', language: 'javascript'};
+  @Input() code: string = '';
+  @Input() languageId: string = '';
   output: string = '';
-  customInput: string = ''; // Assumendo che tu abbia un input per questo
+  customInput: string = '';
+  @Input() instructions: string | undefined;
 
   constructor(private judgeService: Judge0Service) {}
 
   runCode(): void {
-    this.judgeService.handleCompile(this.code, this.customInput)
+    this.judgeService.handleCompile(this.code, this.customInput, +this.languageId)
       .then(output => {
         this.output = output;
       })
