@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
           this.name = 'Stranger!';
       }
   })
-  } // Inietta il servizio AuthService nel costruttore
+  } 
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {

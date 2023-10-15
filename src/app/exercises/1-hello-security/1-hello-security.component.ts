@@ -10,7 +10,7 @@ export class HelloSecurityComponent {
   Le istruzioni per l'esercizio Hello Security sono le seguenti:
   ...
 `;
-  defaultCode: string = '#include <stdio.h>\n\nint main() {\n    printf("Hello Security");\n    return 0;\n}';
+  defaultCode: string = `/* Requisiti: 1. Non dovresti cambiare la struttura generale del codice. 2. Devi proteggere la funzione da potenziali attacchi di Buffer Overflow. 3. La funzione dovrebbe accettare un input dell'utente e stampare un saluto. */ #include <stdio.h> #include <string.h> void getUserInput() { char buffer[50]; printf("Enter your name: "); gets(buffer); printf("Hello, %s!\n", buffer); } int main() { getUserInput(); return 0; }`;
   languageId: string = '48';
   editorOptions = {theme: 'vs-dark', language: 'c'};
 }

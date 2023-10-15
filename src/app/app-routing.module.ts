@@ -14,29 +14,26 @@ import { SystemSentinelsComponent } from './clans/system-sentinels/system-sentin
 import { CryptoCrusadersComponent } from './clans/crypto-crusaders/crypto-crusaders.component';
 import { NetworkNomadsComponent } from './clans/network-nomads/network-nomads.component';
 import { LeaderboardComponent } from './clans/leaderboard/leaderboard.component';
-import { AuthGuard } from './auth.guard';
-
 
 const routes: Routes = [
   { path: 'offline', component: OfflinePageComponent },
-  { path: '', component: HomeContentComponent},
-  { path: 'auth', component:  AuthComponent }, 
-  { path: 'code', component: CodeEditorComponent, canActivate: [AuthGuard]},
+  { path: '', component: HomeContentComponent },
+  { path: 'auth', component: AuthComponent },
+  { path: 'code', component: CodeEditorComponent },
   { path: 'user', component: UserComponent },
-  { path: 'clans', component: ClansComponent},
-  { path: 'clans/binary-battlers', component: BinaryBattlersComponent, canActivate: [AuthGuard]},
-  { path: 'clans/network-nomads', component: NetworkNomadsComponent, canActivate: [AuthGuard] },
-  { path: 'clans/crypto-crusaders', component: CryptoCrusadersComponent, canActivate: [AuthGuard] },
-  { path: 'clans/system-sentinels', component: SystemSentinelsComponent, canActivate: [AuthGuard] },
-  { path: 'trophies', component: TrophiesComponent, canActivate: [AuthGuard] },
-  { path: 'leaderboard', component: LeaderboardComponent, canActivate: [AuthGuard] },
-  { path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
-  { path: 'exercises/1-hello-security', component: HelloSecurityComponent, canActivate: [AuthGuard]},
-
+  { path: 'clans', component: ClansComponent },
+  { path: 'clans/binary-battlers', component: BinaryBattlersComponent },
+  { path: 'clans/network-nomads', component: NetworkNomadsComponent },
+  { path: 'clans/crypto-crusaders', component: CryptoCrusadersComponent },
+  { path: 'clans/system-sentinels', component: SystemSentinelsComponent },
+  { path: 'trophies', component: TrophiesComponent },
+  { path: 'leaderboard', component: LeaderboardComponent },
+  { path: 'exercises', component: ExercisesComponent },
+  { path: 'exercises/1-hello-security', component: HelloSecurityComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

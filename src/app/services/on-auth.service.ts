@@ -16,6 +16,7 @@ export class AuthService {
 
   constructor() {
     onAuthStateChanged(auth, (user) => {
+      console.log("User: ", user); // <-- Aggiungi questa riga
       if (user) {
         this.userSubject.next(user);
       } else {
