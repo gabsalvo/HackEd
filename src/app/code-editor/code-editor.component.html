@@ -1,18 +1,22 @@
-<div class="container">
-    <!-- Sezione Editor -->
-    <div class="editor-section">
-      <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
-      <button (click)="runCode()">Run Code</button>
-      <div class="output_window">
-        <h2>Output</h2>
-        {{ output }}
-      </div>
-    </div>
+<div class="columns is-vcentered is-gapless is-fullheight">
+    
+  <!-- Sezione Editor -->
+  <div class="column">
+      <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" class="is-fullheight"></ngx-monaco-editor>
+      <button (click)="runCode()" class="button is-primary is-pulled-right">Run Code</button>
+  </div>
   
-    <!-- Sezione Istruzioni -->
-    <div class="instructions-section">
-      <!-- Visualizza le istruzioni dinamicamente -->
-      <h2>Istruzioni</h2>
-      <p>{{ instructions }}</p>
-    </div>
+  <!-- Sezione Istruzioni e Output -->
+  <div class="column">
+      <div class="content p-4 istruzioni">
+          <!-- Visualizza le istruzioni dinamicamente -->
+          <h2>Istruzioni</h2>
+          <p>{{ instructions }}</p>
+      </div>
+
+      <div class="box m-4">
+          <h2 class="title is-5">Output</h2>
+          <pre>{{ output }}</pre>
+      </div>
+  </div>
 </div>

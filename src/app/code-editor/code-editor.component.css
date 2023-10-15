@@ -1,54 +1,25 @@
-h2 {
-    margin-top: 0px;
+/* Questo assicura che il contenitore occupi l'intera altezza della vista */
+.columns.is-fullheight {
+    min-height: 100vh;
 }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    height: 100vh;
-    /* questo assicura che il contenitore occupi l'intera altezza della vista */
+.istruzioni {
+    position: fixed;
+    top: 0;
+    width: 100%; /* o la larghezza che preferisci */
+    z-index: 100;
+    background-color: white;
 }
 
-.editor-section {
-    flex: 1;
-    padding: 20px;
-    border-right: 1px solid #ccc;
+/* Adatta l'editor per riempire l'intera colonna */
+ngx-monaco-editor {
+    height: 90vh;
+    width: 100%;
 }
 
-.instructions-section {
-    flex: 1;
-    padding: 20px;
-    overflow-y: auto;
-    /* per far scorrere se le istruzioni sono lunghe */
-}
-
-.output_window {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-top: 20px;
-    background-color: #f7f7f7;
-    color: #333;
-    font-family: monospace;
-    height: 200px;
-    overflow-y: auto;
-}
 /* Media query per dispositivi con schermo di larghezza inferiore a 768px */
-@media only screen and (max-width: 1000px) {
-    .container {
-        flex-direction: column;  /* rende il layout verticale */
-        height: auto;  /* resetta l'altezza al valore predefinito */
-    }
-
-    .editor-section {
-        border-right: none;  /* rimuove il bordo destro */
-        border-bottom: 1px solid #ccc;  /* aggiunge un bordo inferiore */
-    }
-
-    .instructions-section {
-        order: 2;  /* sposta questa sezione in fondo */
-    }
-
-    .output_window {
-        order: 1;  /* sposta questa sezione al centro */
+@media only screen and (max-width: 768px) {
+    .columns {
+        flex-direction: column;
     }
 }
