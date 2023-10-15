@@ -1,0 +1,123 @@
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="/">
+                    <strong>HackEd</strong>
+                </a>
+                <a id="test" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                    (click)="toggleMenu()" [class.is-active]="isMenuActive">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+
+            </div>
+
+            <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isMenuActive">
+                <div class="navbar-start">
+                    <a class="navbar-item" href="/leaderboard">Leaderboard</a>
+                    <a class="navbar-item" href="/clans">Clans</a>
+                    <a class="navbar-item" href="/trophies">Trophies</a>
+                    <a class="navbar-item" href="/user">Profile</a>
+                    <a class="navbar-item" href="/exercises">Exercises</a>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-primary" href="/auth">
+                                <strong>Login</strong>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <section class="hero is-medium is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">Welcome to HackEd!</h1>
+                <h2 class="subtitle">Your portal to learn and improve in cybersecurity.</h2>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title">Challenges and Clans</h2>
+            <p class="my-5">
+                Take on practical cybersecurity challenges and join one of the 4 competing clans. Collaborate, compete,
+                and
+                reach the top!
+            </p>
+
+            <div class="columns">
+                <div class="column">
+                    <!-- Image or icon of clan 1 -->
+                    <h3 class="title is-4">Binary Battlers</h3>
+                    <p>
+                        Heroes of the digital world, they translate reality into zeros and ones, protecting every bit
+                        and
+                        byte in the vast digital universe.
+                    </p>
+                </div>
+                <div class="column">
+                    <!-- Image or icon of clan 2 -->
+                    <h3 class="title is-4">Crypto Crusaders</h3>
+                    <p>
+                        Guardians of the Cyberspace secrets, they hold ancient keys, deciphering riddles and keeping
+                        information safe.
+                    </p>
+                </div>
+                <div class="column">
+                    <!-- Image or icon of clan 3 -->
+                    <h3 class="title is-4">Network Nomads</h3>
+                    <p>
+                        Internet explorers, they travel through the vast network, ensuring every packet reaches its
+                        destination.
+                    </p>
+                </div>
+                <div class="column">
+                    <!-- Image or icon of clan 4 -->
+                    <h3 class="title is-4">System Sentinels</h3>
+                    <p>
+                        Protectors of operating systems, they watch over every process, guarding the digital essence
+                        from
+                        threats and intruders.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="title">Certificates and Trophies</h2>
+            <p>
+                Earn certificates for every completed challenge and proudly display your conquered trophies. Learn,
+                compete,
+                and become a master of cybersecurity.
+            </p>
+            <!-- You might want to add some images or representative icons for certificates and trophies here -->
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container has-text-centered">
+            <h2 class="title">Ready to join?</h2>
+            <p class="my-5">
+                Sign up now and start your journey in cybersecurity.
+            </p>
+            <a class="button is-medium is-primary" href="/auth">Register</a>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                &copy; 2023 HackEd. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</body>

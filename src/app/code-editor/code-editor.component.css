@@ -32,3 +32,23 @@ h2 {
     height: 200px;
     overflow-y: auto;
 }
+/* Media query per dispositivi con schermo di larghezza inferiore a 768px */
+@media only screen and (max-width: 1000px) {
+    .container {
+        flex-direction: column;  /* rende il layout verticale */
+        height: auto;  /* resetta l'altezza al valore predefinito */
+    }
+
+    .editor-section {
+        border-right: none;  /* rimuove il bordo destro */
+        border-bottom: 1px solid #ccc;  /* aggiunge un bordo inferiore */
+    }
+
+    .instructions-section {
+        order: 2;  /* sposta questa sezione in fondo */
+    }
+
+    .output_window {
+        order: 1;  /* sposta questa sezione al centro */
+    }
+}

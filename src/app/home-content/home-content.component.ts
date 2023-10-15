@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./home-content.component.css']
 })
 export class HomeContentComponent {
+  isMenuActive: boolean = false;
+
+  toggleMenu() {
+      this.isMenuActive = !this.isMenuActive;
+  }
 
 }
