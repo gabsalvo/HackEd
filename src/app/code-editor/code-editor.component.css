@@ -4,16 +4,18 @@
 }
 
 .istruzioni {
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     width: 100%; /* o la larghezza che preferisci */
     z-index: 100;
     background-color: white;
+    overflow-y: auto; /* permette lo scrolling se necessario */
+    max-height: 100vh; /* imposta un'altezza massima per le istruzioni */
 }
 
 /* Adatta l'editor per riempire l'intera colonna */
 ngx-monaco-editor {
-    height: 90vh;
+    height: 80vh;
     width: 100%;
 }
 

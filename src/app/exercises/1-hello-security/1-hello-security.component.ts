@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-hello-security',
@@ -6,11 +7,24 @@ import { Component } from '@angular/core';
   styleUrls: ['../../code-editor/code-editor.component.css']
 })
 export class HelloSecurityComponent {
-  helloSecurityInstructions: string = `
-  Le istruzioni per l'esercizio Hello Security sono le seguenti:
-  ...
-`;
-  defaultCode: string = `#include <stdio.h>\n#include <string.h>\n\nvoid getUserInput() {\n    char buffer[50];\n    printf("Enter your name: ");\n    gets(buffer);\n    printf("Hello, %s!\\n", buffer);\n}\n\nint main() {\n    getUserInput();\n    return 0;\n}  `;
+  helloSecurityInstructions: string = ``;
+  defaultCode: string = ``;
   languageId: string = '48';
   editorOptions = {theme: 'vs-dark', language: 'c'};
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    // Carica le istruzioni da un file .md
+    this.http.get('assets/helloSecurityInstructions.md', { responseType: 'text' })
+      .subscribe(data => {
+        this.helloSecurityInstructions = data;
+      });
+
+    // Carica il codice predefinito da un file .c
+    this.http.get('assets/hello-securityCode.c', { responseType: 'text' })
+      .subscribe(data => {
+        this.defaultCode = data;
+      });
+  }
 }

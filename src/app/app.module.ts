@@ -12,6 +12,7 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MarkdownModule } from 'ngx-markdown';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
@@ -41,11 +42,13 @@ import { LeaderboardComponent } from './clans/leaderboard/leaderboard.component'
     SystemSentinelsComponent,
     LeaderboardComponent,
   ],
+  exports: [CodeEditorComponent],
   imports: [
     BrowserModule,
     EditorModule, 
     MonacoEditorModule.forRoot(),
     FormsModule,
+    MarkdownModule.forRoot(),
     HttpClientModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -59,3 +62,4 @@ import { LeaderboardComponent } from './clans/leaderboard/leaderboard.component'
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+export class CodeEditorModule { }

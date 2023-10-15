@@ -19,15 +19,18 @@
                     <a class="navbar-item" href="/leaderboard">Leaderboard</a>
                     <a class="navbar-item" href="/clans">Clans</a>
                     <a class="navbar-item" href="/trophies">Trophies</a>
-                    <a class="navbar-item" href="/user">Profile</a>
+                    <a *ngIf="!auth.isLoggedIn()" class="navbar-item" href="/user">Profile</a>
                     <a class="navbar-item" href="/exercises">Exercises</a>
                 </div>
 
                 <div class="navbar-end">
                     <div class="navbar-item">
                         <div class="buttons">
-                            <a class="button is-primary" href="/auth">
+                            <a *ngIf="!auth.isLoggedIn()" class="button is-primary" href="/auth">
                                 <strong>Login</strong>
+                            </a>
+                            <a *ngIf="auth.isLoggedIn()" class="button is-primary" href="/user">
+                                <strong>Dashboard</strong>
                             </a>
                         </div>
                     </div>

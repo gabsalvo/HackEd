@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/on-auth.service';
 
 @Component({
   selector: 'app-home-content',
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class HomeContentComponent {
   isMenuActive: boolean = false;
+  constructor(public auth: AuthService) { }
 
   toggleMenu() {
       this.isMenuActive = !this.isMenuActive;

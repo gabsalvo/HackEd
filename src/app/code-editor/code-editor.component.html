@@ -1,22 +1,70 @@
-<div class="columns is-vcentered is-gapless is-fullheight">
-    
-  <!-- Sezione Editor -->
-  <div class="column">
-      <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" class="is-fullheight"></ngx-monaco-editor>
-      <button (click)="runCode()" class="button is-primary is-pulled-right">Run Code</button>
-  </div>
-  
-  <!-- Sezione Istruzioni e Output -->
-  <div class="column">
-      <div class="content p-4 istruzioni">
-          <!-- Visualizza le istruzioni dinamicamente -->
-          <h2>Istruzioni</h2>
-          <p>{{ instructions }}</p>
-      </div>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <strong>HackEd</strong>
+            </a>
+            <a id="test" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                (click)="toggleMenu()" [class.is-active]="isMenuActive">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
 
-      <div class="box m-4">
-          <h2 class="title is-5">Output</h2>
-          <pre>{{ output }}</pre>
-      </div>
-  </div>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isMenuActive">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/leaderboard">Leaderboard</a>
+                <a class="navbar-item" href="/clans">Clans</a>
+                <a class="navbar-item" href="/trophies">Trophies</a>
+                <a *ngIf="!auth.isLoggedIn()" class="navbar-item" href="/user">Profile</a>
+                <a class="navbar-item" href="/exercises">Exercises</a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a *ngIf="!auth.isLoggedIn()" class="button is-primary" href="/auth">
+                            <strong>Login</strong>
+                        </a>
+                        <a *ngIf="auth.isLoggedIn()" class="button is-primary" href="/user">
+                            <strong>Dashboard</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="columns is-vcentered is-gapless is-fullheight">
+
+    <!-- Sezione Editor e Output -->
+    <div class="column is-two-thirds">
+        <!-- Editor Component -->
+        <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code" class="editor-height"></ngx-monaco-editor>
+
+        <!-- Run Code Button -->
+        <div class="m-2">
+            <button (click)="runCode()" [disabled]="isProcessing" [ngClass]="{'is-loading': isProcessing}"
+                class="button is-primary is-pulled-right">
+                {{ isProcessing ? 'Processing' : 'Run Code' }}
+            </button>
+        </div>
+
+        <!-- Output Box -->
+        <div class="box m-4 output-height">
+            <h2 class="title is-5">Output</h2>
+            <pre>{{ output }}</pre>
+        </div>
+    </div>
+
+    <!-- Sezione Istruzioni -->
+    <div class="column">
+        <div class="content p-4 istruzioni">
+            <!-- Visualizza le istruzioni dinamicamente -->
+            <h2>Istruzioni</h2>
+            <markdown [data]="instructions"></markdown>
+        </div>
+    </div>
 </div>
