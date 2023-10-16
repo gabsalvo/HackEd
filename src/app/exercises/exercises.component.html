@@ -1,1 +1,85 @@
-<p>exercises works!</p>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <strong>HackEd</strong>
+            </a>
+            <a id="test" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+                (click)="toggleMenu()" [class.is-active]="isMenuActive">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isMenuActive">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/leaderboard">Leaderboard</a>
+                <a class="navbar-item" href="/clans">Clans</a>
+                <a class="navbar-item" href="/trophies">Trophies</a>
+                <a *ngIf="!autho.isLoggedIn()" class="navbar-item" href="/user">Profile</a>
+                <a class="navbar-item" href="/exercises">Exercises</a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a *ngIf="!autho.isLoggedIn()" class="button is-primary" href="/auth">
+                            <strong>Login</strong>
+                        </a>
+                        <a *ngIf="autho.isLoggedIn()" class="button is-primary" href="/user">
+                            <strong>Dashboard</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<section class="section">
+    <!-- Barra superiore -->
+    <div class="level">
+        <div class="level-left">
+            <h1 class="title java-classname">Cybersecurity</h1>
+            <h3 class="subtitle">students: {{studentsCount}} </h3>
+        </div>
+        <div class="level-right">
+            <!-- Potresti voler aggiungere ulteriori elementi qui, come pulsanti o azioni -->
+        </div>
+    </div>
+
+    <!-- Progresso dell'utente -->
+    <div class="box">
+        <p>You're {{progressPercentage}}% through the Cybersecurity track. Keep up the good work! 🚀</p>
+        <div class="block">
+        </div>
+    </div>
+
+    <!-- Statistiche e trofei -->
+    <div class="columns">
+        <!-- Colonna delle statistiche -->
+        <div class="column is-three-quarters">
+            <div class="box">
+                <h2 class="title">Statistics</h2>
+                <p>Avg. exercises completed per week: {{exercisesCompleted}}</p>
+                <p>Exercises completed: {{exercisesCompleted}}</p>
+                <br>
+                <div class="box-grid">
+                    <div *ngFor="let box of boxes; let i = index" class="box-item" (click)="navigateToExercise(i)">
+                        {{box.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Colonna dei trofei -->
+        <div class="column">
+            <div class="box">
+                <h2 class="title">Username Trophy Cabinet</h2>
+                <app-trophies></app-trophies> <!-- Qui includiamo il tuo componente trofei -->
+            </div>
+        </div>
+    </div>
+</section>

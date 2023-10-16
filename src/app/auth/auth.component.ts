@@ -76,6 +76,7 @@ export class AuthComponent implements OnInit {
             exercises_solved: 0,
             clan: this.selectedClan,
             exp: 0,
+            solved_exercises: [''],
           },
           { merge: true }
         );

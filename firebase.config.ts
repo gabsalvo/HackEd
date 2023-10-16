@@ -46,7 +46,6 @@ async function loginWithGoogle(callback: () => void) {
 
     const userRef = doc(db, 'users', user.uid);
 
-    // Attendi 5 secondi prima di leggere il documento
     await delay(2500);
 
     const userSnapshot = await getDoc(userRef);

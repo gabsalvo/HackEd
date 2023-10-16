@@ -1,0 +1,27 @@
+.java-classname {
+    margin-right: 10px; /* Aggiungi uno spazio a destra */
+}
+
+.box-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 colonne per 4 righe = 20 caselle */
+    gap: 10px; /* spazio tra le caselle */
+}
+
+.box-item {
+    background-color: #f5f5f5;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 10%; /* Rende i box tondi */
+    display: flex; /* Centra il nome all'interno del box */
+    align-items: center;
+    justify-content: center;
+    height: 50px; /* Dà una dimensione specifica al box */
+    width: 100px; /* Dà una dimensione specifica al box */
+}
+
+.box-item:first-child {
+    background-color: #00d1b2;
+    justify-content: center;
+}
+
