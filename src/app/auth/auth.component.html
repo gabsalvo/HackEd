@@ -1,3 +1,42 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="container">
+      <div class="navbar-brand">
+          <a class="navbar-item" href="/">
+              <strong>HackEd</strong>
+          </a>
+          <a id="test" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false"
+              (click)="toggleMenu()" [class.is-active]="isMenuActive">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+          </a>
+
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isMenuActive">
+          <div class="navbar-start">
+              <a class="navbar-item" href="/leaderboard">Leaderboard</a>
+              <a class="navbar-item" href="/clans">Clans</a>
+              <a class="navbar-item" href="/trophies">Trophies</a>
+              <a *ngIf="!authService.isLoggedIn()" class="navbar-item" href="/user">Profile</a>
+              <a class="navbar-item" href="/exercises">Exercises</a>
+          </div>
+
+          <div class="navbar-end">
+              <div class="navbar-item">
+                  <div class="buttons">
+                      <a *ngIf="!authService.isLoggedIn()" class="button is-primary" href="/auth">
+                          <strong>Login</strong>
+                      </a>
+                      <a *ngIf="authService.isLoggedIn()" class="button is-primary" href="/user">
+                          <strong>Dashboard</strong>
+                      </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</nav>
 <div class="authe">
   <h1>Login</h1>
   <button [disabled]="isLogged" (click)="onGoogleLogin()">Login con Google</button>

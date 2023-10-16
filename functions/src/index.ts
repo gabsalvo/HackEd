@@ -37,8 +37,8 @@ export const sendNotification = functions.https.onRequest(async (req, res) => {
     // Configura la notifica
     const payload = {
       notification: {
-        title: "Notifica di prova",
-        body: "Questa è una notifica di prova!",
+        title: "Exercise Solved",
+        body: "Congrats on your solution!",
       },
       token: userToken,
     };

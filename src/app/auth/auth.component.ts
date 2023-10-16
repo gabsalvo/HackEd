@@ -28,7 +28,13 @@ export class AuthComponent implements OnInit {
   selectedClan: string = '';
   clanSelected: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  isMenuActive: boolean = false;
+
+  toggleMenu() {
+    this.isMenuActive = !this.isMenuActive;
+  }
+
+  constructor(public authService: AuthService) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {

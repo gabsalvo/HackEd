@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/on-auth.service';
 
 @Component({
   selector: 'app-clans',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./clans.component.css']
 })
 export class ClansComponent {
+  isMenuActive: boolean = false;
+
+  toggleMenu() {
+    this.isMenuActive = !this.isMenuActive;
+  }
+
+  constructor(public auth: AuthService) {}
 
 }

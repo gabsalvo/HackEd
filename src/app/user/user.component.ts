@@ -12,7 +12,13 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit {
   name: string = '';
   isLogged: boolean = false;
-  constructor(private authService: AuthService, private router: Router) {
+  isMenuActive: boolean = false;
+
+  toggleMenu() {
+    this.isMenuActive = !this.isMenuActive;
+  }
+
+  constructor(public authService: AuthService, private router: Router) {
     auth.onAuthStateChanged((user) => {
       if (user) {
           // L'utente è loggato
