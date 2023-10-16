@@ -10,6 +10,7 @@ export class Judge0Service {
 
   processing: boolean = false;
   outputDetails: string = "";
+  maxRetries: number = 10;  // Numero massimo di tentativi per il controllo dello stato
 
   async handleCompile(code: string, customInput: string, languageId: number): Promise<string> {
     this.processing = true;
@@ -29,22 +30,25 @@ export class Judge0Service {
             'X-RapidAPI-Key': api_key
         },
         body: JSON.stringify(formData)
-        
     })
     .then(response => response.json())
     .then(data => {
         console.log("res.data", data);
         const token = data.token;
-        return this.checkStatus(token);  // ritorna una Promise da checkStatus
+        return this.checkStatus(token, 0);  // Inizia con 0 tentativi
     })
     .catch(err => {
         this.processing = false;
         console.log(err);
-        throw err;  // Rigetta l'errore così il chiamante può gestirlo
+        throw err;
     });
   }
 
-  private async checkStatus(token: string): Promise<string> {
+  private async checkStatus(token: string, retries: number): Promise<string> {
+    if (retries >= this.maxRetries) {
+        throw new Error('Maximum retry attempts reached');
+    }
+
     const url = `${api_url}/${token}?base64_encoded=true&fields=*`;
 
     return fetch(url, {
@@ -60,7 +64,7 @@ export class Judge0Service {
       if (statusId === 1 || statusId === 2) {
           return new Promise<string>((resolve, reject) => {
               setTimeout(() => {
-                  this.checkStatus(token).then(output => {
+                  this.checkStatus(token, retries + 1).then(output => {  // Aumenta il numero di tentativi
                       resolve(output);
                   }, reject);
               }, 2000);
