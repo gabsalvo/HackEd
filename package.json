@@ -32,6 +32,7 @@
     "firebase-functions": "^4.4.1",
     "firebaseui": "^6.1.0",
     "monaco-editor": "^0.41.0",
+    "netlify-cli": "^16.7.0",
     "ngx-markdown": "^16.0.0",
     "ngx-monaco-editor-v2": "^16.0.1",
     "rxjs": "~7.8.0",
