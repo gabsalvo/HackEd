@@ -48,14 +48,17 @@ export class CodeEditorComponent {
       const solutionRef = doc(db, 'exercises', 'hello-security');
       const solutionSnapshot = await getDoc(solutionRef);
       const dbSolution = solutionSnapshot.get('solution');
-      
-      console.log("User Solution:", JSON.stringify(userSolution));
-      console.log("DB Solution:", JSON.stringify(dbSolution));
-  
+
+      console.log('User Solution:', JSON.stringify(userSolution));
+      console.log('DB Solution:', JSON.stringify(dbSolution));
+
       if (dbSolution.trim() === userSolution.trim()) {
         console.log('You got it!!!');
         if (auth.currentUser) {
-          await this.updateExperienceAndSolvedExercises(auth.currentUser.uid, 'hello-security');
+          await this.updateExperienceAndSolvedExercises(
+            auth.currentUser.uid,
+            'hello-security'
+          );
         } else {
           console.error('No user is currently logged in.');
         }
@@ -69,14 +72,14 @@ export class CodeEditorComponent {
 
   async updateExperienceAndSolvedExercises(userId: string, exerciseId: string) {
     const userRef = doc(db, 'users', userId);
-  
+
     // Ottieni i dati correnti dell'utente
     const userSnapshot = await getDoc(userRef);
     const currentExperience = userSnapshot.get('experience') || 0;
     const currentSolvedCount = userSnapshot.get('exercises_solved') || 0;
     const solvedExercises = userSnapshot.get('solved_exercises') || [];
     const percentageProgression = userSnapshot.get('percentage') || 0;
-  
+
     // Verifica se l'esercizio è già stato risolto dall'utente
     if (!solvedExercises.includes(exerciseId)) {
       // Aggiorna i contatori e l'elenco degli esercizi risolti
@@ -84,12 +87,13 @@ export class CodeEditorComponent {
         experience: currentExperience + 50,
         exercises_solved: currentSolvedCount + 1,
         solved_exercises: [...solvedExercises, exerciseId],
-        percentage: percentageProgression + 5
+        percentage: percentageProgression + 5,
       });
-      console.log('Experience, solved exercises and percentage of progression updated!');
+      console.log(
+        'Experience, solved exercises and percentage of progression updated!'
+      );
     } else {
       console.log('Exercise already solved!');
     }
   }
-  
 }

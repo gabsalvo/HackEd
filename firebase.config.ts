@@ -173,20 +173,6 @@ async function sendNotificationDelayed() {
   }
 }
 
-/*async function revokeNotificationToken() {
-  try {
-    const currentToken = await getToken(messaging);
-    if (currentToken) {
-      await deleteToken(messaging); // Only the messaging instance is needed
-      console.log('Notification token revoked.');
-    } else {
-      console.log('No notification token available.');
-    }
-  } catch (error) {
-    console.error('Error revoking notification token:', error);
-  }
-}*/
-
 async function removeUser() {
   const auth = getAuth();
 
