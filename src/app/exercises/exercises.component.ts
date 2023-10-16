@@ -34,7 +34,25 @@ export class ExercisesComponent implements OnInit {
     }
   }
 
-  progressPercentage: number = 69;
+  async getUserProgression(): Promise<number> {
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      console.warn('Utente non autenticato');
+      return 0;
+    }
+    try {
+      const userRef = doc(db, 'users', currentUser.uid);
+      const userSnapshot = await getDoc(userRef);
+      const percentageProgression = userSnapshot.get('percentage');
+      return percentageProgression;
+    } catch (error) {
+      console.error('Errore durante la lettura della percentuale:', error);
+      return 0;
+    }
+  }
+
+  progressPercentage: number | undefined;
   studentsCount: number | undefined;
   exercisesCompleted: number = 1;
   boxes = [
@@ -83,6 +101,16 @@ export class ExercisesComponent implements OnInit {
         this.getStudentCount()
           .then((count) => {
             this.studentsCount = count;
+          })
+          .catch((error) => {
+            console.error(
+              'Errore durante la lettura del conto studenti:',
+              error
+            );
+          });
+          this.getUserProgression()
+          .then((perc) => {
+            this.progressPercentage = perc;
           })
           .catch((error) => {
             console.error(

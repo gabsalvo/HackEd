@@ -6,16 +6,17 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
-  deleteUser
+  deleteUser,
 } from 'firebase/auth';
-import { getMessaging, getToken, onMessage, deleteToken } from 'firebase/messaging';
-import { getFirestore, doc, setDoc, getDoc } from 'firebase/firestore';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  runTransaction,
+} from 'firebase/firestore';
 
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: 'AIzaSyADljtJJVmWrxoQru7Z0K31BBcoAhC_t2M',
   authDomain: 'hacked23-24.firebaseapp.com',
@@ -53,6 +54,18 @@ async function loginWithGoogle(callback: () => void) {
     if (userSnapshot.get('registrationCompleted') !== true) {
       console.log(userSnapshot.get('registrationCompleted'));
       console.log('Showing the popup...');
+
+      // Incrementa il contatore degli studenti
+      const studentCountRef = doc(db, 'metadata', 'student_count');
+      await runTransaction(db, async (transaction) => {
+        const studentCountSnapshot = await transaction.get(studentCountRef);
+        if (!studentCountSnapshot.exists()) {
+          throw 'Document does not exist!';
+        }
+
+        const newCount = studentCountSnapshot.data()['count'] + 1;
+        transaction.update(studentCountRef, { count: newCount });
+      });
       callback(); // Mostra il popup per selezionare l'username
     }
   } catch (error) {
@@ -182,7 +195,10 @@ async function removeUser() {
       await deleteUser(auth.currentUser);
       console.log('Utente eliminato con successo da Firebase Auth.');
     } catch (error) {
-      console.error('Errore durante l\'eliminazione dell\'utente da Firebase Auth:', error);
+      console.error(
+        "Errore durante l'eliminazione dell'utente da Firebase Auth:",
+        error
+      );
     }
   } else {
     console.log('Nessun utente autenticato per essere eliminato.');
@@ -211,14 +227,11 @@ onMessage(messaging, (payload) => {
   }
 });
 
-
-
 export { loginWithGoogle };
 export { logoutFromGoogle };
 export { getNotificationPermission };
 export { sendNotification };
 export { sendNotificationDelayed };
-//export { revokeNotificationToken };
 export { removeUser };
 export { auth };
 export { db };

@@ -75,6 +75,7 @@ export class CodeEditorComponent {
     const currentExperience = userSnapshot.get('experience') || 0;
     const currentSolvedCount = userSnapshot.get('exercises_solved') || 0;
     const solvedExercises = userSnapshot.get('solved_exercises') || [];
+    const percentageProgression = userSnapshot.get('percentage') || 0;
   
     // Verifica se l'esercizio è già stato risolto dall'utente
     if (!solvedExercises.includes(exerciseId)) {
@@ -82,9 +83,10 @@ export class CodeEditorComponent {
       await updateDoc(userRef, {
         experience: currentExperience + 50,
         exercises_solved: currentSolvedCount + 1,
-        solved_exercises: [...solvedExercises, exerciseId]
+        solved_exercises: [...solvedExercises, exerciseId],
+        percentage: percentageProgression + 5
       });
-      console.log('Experience and solved exercises updated!');
+      console.log('Experience, solved exercises and percentage of progression updated!');
     } else {
       console.log('Exercise already solved!');
     }
