@@ -85,7 +85,7 @@ export class CodeEditorComponent {
     if (!solvedExercises.includes(exerciseId)) {
       // Aggiorna i contatori e l'elenco degli esercizi risolti
       await updateDoc(userRef, {
-        experience: currentExperience + 50,
+        exp: currentExperience + 50,
         exercises_solved: currentSolvedCount + 1,
         solved_exercises: [...solvedExercises, exerciseId],
         percentage: percentageProgression + 5,
