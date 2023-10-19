@@ -43,7 +43,14 @@ export class Judge0Service {
     });
   }
 
-  async checkStatus(token: string): Promise<string> {
+  private maxAttempts = 10; // massimo numero di tentativi di polling
+
+private async checkStatus(token: string, attempt = 1): Promise<string> {
+    if (attempt > this.maxAttempts) {
+        console.error('Max polling attempts reached. Stopping.');
+        throw new Error('Max polling attempts reached.');
+    }
+
     const url = `${api_url}/${token}?base64_encoded=true&fields=*`;
 
     return fetch(url, {
@@ -56,10 +63,12 @@ export class Judge0Service {
     .then(response => response.json())
     .then(data => {
       const statusId = data.status?.id;
+      console.log(`Received statusId: ${statusId} on attempt ${attempt}`);
+
       if (statusId === 1 || statusId === 2) {
           return new Promise<string>((resolve, reject) => {
               setTimeout(() => {
-                  this.checkStatus(token).then(output => {
+                  this.checkStatus(token, attempt + 1).then(output => {
                       resolve(output);
                   }, reject);
               }, 2000);
@@ -76,5 +85,6 @@ export class Judge0Service {
         this.processing = false;
         throw err;
     });
-  }
+}
+
 }
