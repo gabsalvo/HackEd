@@ -12,7 +12,6 @@ export class Judge0Service {
   outputDetails: string = "";
 
   async handleCompile(code: string, customInput: string, languageId: number): Promise<string> {
-    this.processing = true;
     const formData = {
         language_id: languageId,
         source_code: btoa(code),
@@ -44,7 +43,7 @@ export class Judge0Service {
     });
   }
 
-  private async checkStatus(token: string): Promise<string> {
+  async checkStatus(token: string): Promise<string> {
     const url = `${api_url}/${token}?base64_encoded=true&fields=*`;
 
     return fetch(url, {

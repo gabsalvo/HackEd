@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Judge0Service } from '../services/judge0.service';
 import { AuthService } from '../services/on-auth.service';
-import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db, sendNotification } from '../../../firebase.config';
 
 @Component({
