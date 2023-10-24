@@ -8,7 +8,7 @@ import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
-import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 const routes: Routes = [
   { path: 'offline', component: OfflinePageComponent },

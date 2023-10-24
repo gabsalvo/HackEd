@@ -16,7 +16,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
-import { LeaderboardComponent } from '../leaderboard/leaderboard.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 
 @NgModule({
