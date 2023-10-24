@@ -59,18 +59,19 @@ self.addEventListener("fetch", function (event) {
 
 self.addEventListener('push', function(event) {
   if (event.data) {
-    const data = event.data.json();
-    console.log('Dati ricevuti:', data);  // Aggiunto per il debugging
-    const title = data.title || 'Notifica';
+    const payload = event.data.json();
+    console.log('Dati ricevuti:', payload);  // Aggiunto per il debugging
+    const title = payload.data.title || 'Notifica del service';
     const options = {
-      body: data.body || '',
-      image: data.image || '',
-      icon: data.icon || '',
-      badge: data.badge || '',
-      actions: JSON.parse(data.actions || '[]'),
+      body: payload.data.body || 'Body del service',
+      image: payload.data.image || '',
+      icon: payload.data.icon || '',
+      badge: payload.data.badge || '',
+      actions: JSON.parse(payload.data.actions || '[]'),
     };
     event.waitUntil(
       self.registration.showNotification(title, options)
     );
   }
 });
+
