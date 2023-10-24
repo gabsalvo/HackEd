@@ -13,8 +13,37 @@ export class Judge0Service {
 
   constructor() {}
 
-  async handleCompile(code: string, customInput: string, languageId: number): Promise<string> {
-    this.processing = true;
+  async handleCompile(
+    code: string,
+    customInput: string,
+    languageId: number
+  ): Promise<string> {
+    return new Promise((resolve) => {
+      this.processing = true;
+
+      setTimeout(() => {
+        let result = 'Wrong'; // Inizializziamo result con il valore di default
+
+        try {
+          if (code.includes('int result = calculateTotal(data, 10);')) {
+            result = 'Wrong';
+          } else if (code.includes('int result = calculateTotal(data, 5);')) {
+            result = 'Total: 150';
+          }
+        } catch (error) {
+          console.error('An error occurred:', error);
+          result = 'Error during compilation or execution.';
+        } finally {
+          this.processing = false;
+          resolve(result);
+        }
+      }, 2000); // Simula un ritardo di 2 secondi
+    });
+  }
+
+  /*async handleCompile(code: string, customInput: string, languageId: number): Promise<string> {
+    
+   this.processing = true;
     const formData = {
       language_id: languageId,
       source_code: btoa(code),
@@ -39,9 +68,9 @@ export class Judge0Service {
       console.error(err);
       throw err;
     }
-  }
+  }*/
 
-  private async checkStatus(token: string, attempt = 1): Promise<string> {
+  /*private async checkStatus(token: string, attempt = 1): Promise<string> {
     if (attempt > this.maxAttempts) {
       this.processing = false;
       console.error('Max polling attempts reached. Stopping.');
@@ -75,5 +104,5 @@ export class Judge0Service {
       console.error(err);
       throw err;
     }
-  }
+  }*/
 }
