@@ -40,4 +40,6 @@
   Hello {{ name }}
 </h1>
 <button *ngIf="name !== 'Stranger!'" (click)="deleteUser()">Delete User</button>
+<button *ngIf="name !== 'Stranger!'" (click)="logoutFromGoogle()">Logout</button>
 <button *ngIf="name === 'Stranger!'" (click)="navigate()">Login</button>
+

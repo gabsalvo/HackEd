@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
   name: string = '';
   isLogged: boolean = false;
   isMenuActive: boolean = false;
+  logoutFromGoogle = logoutFromGoogle;
 
   toggleMenu() {
     this.isMenuActive = !this.isMenuActive;
