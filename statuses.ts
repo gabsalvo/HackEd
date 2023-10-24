@@ -1,6 +1,6 @@
-export const api_key = '34f54b7ca9mshae462c74aeccbc2p12b2d4jsncf73428f9321';
-export const api_host = 'judge0-ce.p.rapidapi.com';
-export const api_url = 'https://judge0-ce.p.rapidapi.com/submissions';
+export const api_key = '';
+export const api_host = '';
+export const api_url = '';
 
 export const statuses = [
     {
