@@ -56,3 +56,20 @@ self.addEventListener("fetch", function (event) {
     );
   }
 });
+
+self.addEventListener('push', function(event) {
+  if (event.data) {
+    const data = event.data.json();
+    const title = data.title || 'Notifica';
+    const options = {
+      body: data.body || '',
+      image: data.image || '',
+      icon: data.icon || '',
+      badge: data.badge || '',
+      actions: JSON.parse(data.actions || '[]'),
+    };
+    event.waitUntil(
+      self.registration.showNotification(title, options)
+    );
+  }
+});

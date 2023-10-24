@@ -60,6 +60,7 @@ self.addEventListener("fetch", function (event) {
 self.addEventListener('push', function(event) {
   if (event.data) {
     const data = event.data.json();
+    console.log('Dati ricevuti:', data);  // Aggiunto per il debugging
     const title = data.title || 'Notifica';
     const options = {
       body: data.body || '',
