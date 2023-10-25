@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Judge0Service } from '../services/judge0.service';
+import { WasmService } from '../services/wasm.service';
 import { AuthService } from '../services/on-auth.service';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db, sendNotification } from '../../../firebase.config';
@@ -25,11 +25,11 @@ export class CodeEditorComponent {
     this.isMenuActive = !this.isMenuActive;
   }
 
-  constructor(public auth: AuthService, private judgeService: Judge0Service) {}
+  constructor(public auth: AuthService, private wasmService: WasmService) {}
 
   runCode(): void {
     this.isProcessing = true;
-    this.judgeService
+    this.wasmService
       .handleCompile(this.code, this.customInput, +this.languageId)
       .then((output) => {
         this.output = output;

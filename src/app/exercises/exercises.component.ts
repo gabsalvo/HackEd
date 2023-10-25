@@ -52,30 +52,68 @@ export class ExercisesComponent implements OnInit {
     }
   }
 
+  async getUserExercises():  Promise<number> {
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      console.warn('Utente non autenticato');
+      return 0;
+    }
+    try {
+      const userRef = doc(db, 'users', currentUser.uid);
+      const userSnapshot = await getDoc(userRef);
+      const exercises_solved = userSnapshot.get('exercises_solved');
+      return exercises_solved;
+    } catch (error) {
+      console.error('Errore durante la lettura della percentuale:', error);
+      return 0;
+    }
+  }
+
+  async getUserName():  Promise<string> {
+    const currentUser = auth.currentUser;
+
+    if (!currentUser) {
+      console.warn('Utente non autenticato');
+      return "";
+    }
+    try {
+      const userRef = doc(db, 'users', currentUser.uid);
+      const userSnapshot = await getDoc(userRef);
+      const userName = userSnapshot.get('username');
+      return userName
+    } catch (error) {
+      console.error('Errore durante la lettura della percentuale:', error);
+      return "";
+    }
+  }
+
   progressPercentage: number | undefined;
   studentsCount: number | undefined;
-  exercisesCompleted: number = 1;
+  exercisesCompleted: number | undefined;
+  userName: string | undefined;
+
   boxes = [
     { name: 'Hello Security!' },
-    { name: 'Nome2' },
-    { name: 'Nome3' },
-    { name: 'Nome4' },
-    { name: 'Nome5' },
-    { name: 'Nome6' },
-    { name: 'Nome7' },
-    { name: 'Nome8' },
-    { name: 'Nome9' },
-    { name: 'Nome10' },
-    { name: 'Nome11' },
-    { name: 'Nome2' },
-    { name: 'Nome3' },
-    { name: 'Nome4' },
-    { name: 'Nome5' },
-    { name: 'Nome6' },
-    { name: 'Nome7' },
-    { name: 'Nome8' },
-    { name: 'Nome9' },
-    { name: 'Nome10' },
+    { name: 'Exercise 2' },
+    { name: 'Exercise 3' },
+    { name: 'Exercise 4' },
+    { name: 'Exercise 5' },
+    { name: 'Exercise 6' },
+    { name: 'Exercise 7' },
+    { name: 'Exercise 8' },
+    { name: 'Exercise 9' },
+    { name: 'Exercise 10' },
+    { name: 'Exercise 11' },
+    { name: 'Exercise 2' },
+    { name: 'Exercise 3' },
+    { name: 'Exercise 4' },
+    { name: 'Exercise 5' },
+    { name: 'Exercise 6' },
+    { name: 'Exercise 7' },
+    { name: 'Exercise 8' },
+    { name: 'Exercise 9' },
+    { name: 'Exercise 10' },
   ];
 
   isMenuActive: boolean = false;
@@ -111,6 +149,14 @@ export class ExercisesComponent implements OnInit {
           this.getUserProgression()
           .then((perc) => {
             this.progressPercentage = perc;
+          })
+          this.getUserExercises()
+          .then((exercisesCompleted) => {
+            this.exercisesCompleted = exercisesCompleted;
+          })
+          this.getUserName()
+          .then((userName) => {
+            this.userName = userName;
           })
           .catch((error) => {
             console.error(
