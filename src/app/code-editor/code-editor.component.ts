@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { WasmService } from '../services/wasm.service';
+import { CustomServerService } from '../services/custom-server.service';
 import { AuthService } from '../services/on-auth.service';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db, sendNotification } from '../../../firebase.config';
@@ -25,11 +25,11 @@ export class CodeEditorComponent {
     this.isMenuActive = !this.isMenuActive;
   }
 
-  constructor(public auth: AuthService, private wasmService: WasmService) {}
+  constructor(public auth: AuthService, private serverService: CustomServerService) {}
 
   runCode(): void {
     this.isProcessing = true;
-    this.wasmService
+    this.serverService
       .handleCompile(this.code, this.customInput, +this.languageId)
       .then((output) => {
         this.output = output;
