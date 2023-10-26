@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class CustomServerService {
   private API_ENDPOINT =
-    'https://https://fcbb-93-35-221-166.ngrok-free.app/api/compile'; // Sostituisci con l'indirizzo del tuo server
+    'https://fcbb-93-35-221-166.ngrok-free.app/api/compile'; // Sostituisci con l'indirizzo del tuo server
 
   constructor(private http: HttpClient) {}
 
