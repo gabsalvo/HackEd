@@ -26,7 +26,7 @@
               "src/manifest.webmanifest",
               { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" },
               "src/firebase-messaging-sw.js",
-              "src/app/offline-page/offline-page.component.html"
+              "src/app/offline-page/*"
             ],
             "styles": [
               "src/styles.css"
