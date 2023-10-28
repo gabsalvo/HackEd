@@ -4,12 +4,12 @@ import { AuthComponent } from './auth/auth.component';
 import { HomeContentComponent } from './home-content/home-content.component';
 import { CodeEditorComponent } from './code-editor/code-editor.component';
 import { UserComponent } from './user/user.component';
-import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { AuthDevComponent } from './auth-dev/auth-dev.component';
+import { OfflinePageComponent } from './offline-page/offline-page.component';
 
 const routes: Routes = [
   { path: 'offline', component: OfflinePageComponent },

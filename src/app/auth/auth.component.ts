@@ -110,6 +110,7 @@ export class AuthComponent implements OnInit {
             exercises_solved: 0,
             clan: this.selectedClan,
             exp: 0,
+            percentage: 0
           },
           { merge: true }
         );
@@ -121,11 +122,13 @@ export class AuthComponent implements OnInit {
       alert('Inserisci un username valido!');
     }
   }
+
   onClanSelected() {
     if (this.selectedClan) {
       this.clanSelected = true;
     }
   }
+  
   async abortLogin() {
     if (auth.currentUser) {
       const uid = auth.currentUser.uid;
