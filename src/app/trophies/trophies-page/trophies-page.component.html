@@ -1,0 +1,13 @@
+<section class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        <!-- Trofei (sia reali che mock) -->
+        <div class="column is-3" *ngFor="let trophy of trophies">
+          <figure class="image is-128x128" [class.grayed-out]="!trophy.unlocked">
+            <img [src]="trophy.iconURL" [alt]="'Icona Trofeo ' + trophy.id">
+          </figure>
+          <p>{{ trophy.description }}</p>
+        </div>
+      </div>
+    </div>
+  </section>

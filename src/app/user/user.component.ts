@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { auth, db, logoutFromGoogle, removeUser, /*revokeNotificationToken*/ } from 'firebase.config';
+import { auth, db, logoutFromGoogle } from 'firebase.config';
 import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 import { AuthService } from '../services/on-auth.service';
 import { Router } from '@angular/router';

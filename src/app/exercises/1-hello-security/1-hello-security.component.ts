@@ -10,6 +10,7 @@ export class HelloSecurityComponent {
   helloSecurityInstructions: string = ``;
   defaultCode: string = ``;
   languageId: string = '48';
+  idTrophy: number = 1;
   editorOptions = {theme: 'vs-dark', language: 'c'};
 
   constructor(private http: HttpClient) {}

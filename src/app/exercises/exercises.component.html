@@ -21,9 +21,9 @@
     <!-- Statistiche e trofei -->
     <div class="columns">
         <!-- Colonna delle statistiche -->
-        <div class="column is-three-quarters">
+        <div class="column is-two-quarters">
             <div class="box">
-                <h2 class="title">Statistics</h2>
+                <h2 class="title">Exercises</h2>
                 <p>Avg. exercises completed per week: {{exercisesCompleted}}</p>
                 <p>Exercises completed: {{exercisesCompleted}}</p>
                 <br>
@@ -39,8 +39,8 @@
         <!-- Colonna dei trofei -->
         <div class="column">
             <div class="box">
-                <h2 class="title">{{ userName }} Trophy Cabinet</h2>
-                <app-trophies></app-trophies> <!-- Qui includiamo il tuo componente trofei -->
+                <h2 class="title">{{ userName }}'s Trophies</h2>
+                <app-trophies-page></app-trophies-page>
             </div>
         </div>
     </div>

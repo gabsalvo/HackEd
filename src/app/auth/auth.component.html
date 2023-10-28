@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<div class="auth-container">
+<div class="auth-container" *ngIf="!isLogged">
     <h1>Welcome to HackEd</h1>
     
     <!-- Sezione di selezione del clan (sempre visibile) -->
@@ -7,6 +7,12 @@
     <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
         <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
     </select>
+
+    <br>
+    <br>
+
+    <h2>Already registered?</h2>
+    <button (click)="loginWithGoogleDev()">Login</button>
     
     <!-- Sezione di generazione e visualizzazione dell'username (visibile una volta selezionato un clan) -->
     <div *ngIf="selectedClan">
@@ -19,6 +25,6 @@
     <!-- Sezione di login (il pulsante di login è disabilitato finché non viene generato un username) -->
     <div *ngIf="selectedClan">
       <h2>Ready to Join HackEd?</h2>
-      <button [disabled]="!username" (click)="loginProcedure()">Login with Google</button>
+      <button [disabled]="!username" (click)="loginProcedure()">Register with Google</button>
     </div>
 </div>

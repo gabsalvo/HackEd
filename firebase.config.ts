@@ -39,39 +39,7 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-async function loginWithGoogle(callback: () => void) {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-    console.log('Logged in user:', user);
 
-    const userRef = doc(db, 'users', user.uid);
-
-    await delay(2500);
-
-    const userSnapshot = await getDoc(userRef);
-
-    if (userSnapshot.get('registrationCompleted') !== true) {
-      console.log(userSnapshot.get('registrationCompleted'));
-      console.log('Showing the popup...');
-
-      // Incrementa il contatore degli studenti
-      const studentCountRef = doc(db, 'metadata', 'student_count');
-      await runTransaction(db, async (transaction) => {
-        const studentCountSnapshot = await transaction.get(studentCountRef);
-        if (!studentCountSnapshot.exists()) {
-          throw 'Document does not exist!';
-        }
-
-        const newCount = studentCountSnapshot.data()['count'] + 1;
-        transaction.update(studentCountRef, { count: newCount });
-      });
-      callback(); // Mostra il popup per selezionare l'username
-    }
-  } catch (error) {
-    console.error('Error logging in:', error);
-  }
-}
 
 async function loginWithGoogleDev() {
   try {
@@ -244,7 +212,6 @@ onMessage(messaging, (payload) => {
   }
 });
 
-export { loginWithGoogle };
 export { loginWithGoogleDev };
 export { logoutFromGoogle };
 export { getNotificationPermission };

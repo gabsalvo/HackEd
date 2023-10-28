@@ -3,6 +3,7 @@ import { CustomServerService } from '../services/custom-server.service';
 import { AuthService } from '../services/on-auth.service';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db, sendNotification } from '../../../firebase.config';
+import { TrophyService } from '../services/trophy.service';
 
 @Component({
   selector: 'app-code-editor',
@@ -13,13 +14,14 @@ export class CodeEditorComponent {
   @Input() editorOptions = { theme: 'vs-dark', language: 'javascript' };
   @Input() code: string = '';
   @Input() languageId: string = '';
+  @Input() idTrophy: number = 0
   output: string = '';
   customInput: string = '';
   @Input() instructions: string | undefined;
   isProcessing: boolean = false;
   currentTab: 'instructions' | 'output' = 'instructions';
 
-  constructor(public auth: AuthService, private serverService: CustomServerService) {}
+  constructor(public auth: AuthService, private serverService: CustomServerService, private trophyService: TrophyService) {}
 
   runCode(): void {
     this.isProcessing = true;
@@ -48,6 +50,7 @@ export class CodeEditorComponent {
 
       if (dbSolution.trim() === userSolution.trim()) {
         sendNotification();
+        this.trophyService.checkTrophy(this.idTrophy)
         console.log('You got it!!!');
         if (auth.currentUser) {
           await this.updateExperienceAndSolvedExercises(

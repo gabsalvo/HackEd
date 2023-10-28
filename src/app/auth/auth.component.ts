@@ -3,11 +3,12 @@ import {
   auth,
   db,
   loginWithGoogleDev,
-  logoutFromGoogle,
 } from '../../../firebase.config';
 import { AuthService } from '../services/on-auth.service';
 import { getRandomUsername } from 'randomUsername';
-import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-auth',
@@ -29,12 +30,13 @@ export class AuthComponent implements OnInit {
   clanSelected: boolean = false;
 
 
-  constructor(public authService: AuthService) {}
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
       if (user) {
         this.isLogged = true;
+        this.router.navigate(['/user']);
       } else {
         this.isLogged = false;
       }
@@ -89,7 +91,4 @@ export class AuthComponent implements OnInit {
       console.error('Errore nel generare un username casuale!');
     }
   }
-
-
-
 }
