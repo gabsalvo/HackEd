@@ -28,11 +28,6 @@ export class AuthComponent implements OnInit {
   selectedClan: string = '';
   clanSelected: boolean = false;
 
-  isMenuActive: boolean = false;
-
-  toggleMenu() {
-    this.isMenuActive = !this.isMenuActive;
-  }
 
   constructor(public authService: AuthService) {}
 

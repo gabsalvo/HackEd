@@ -12,12 +12,7 @@ import { Router } from '@angular/router';
 export class UserComponent implements OnInit {
   name: string = '';
   isLogged: boolean = false;
-  isMenuActive: boolean = false;
   logoutFromGoogle = logoutFromGoogle;
-
-  toggleMenu() {
-    this.isMenuActive = !this.isMenuActive;
-  }
 
   constructor(public authService: AuthService, private router: Router) {
     auth.onAuthStateChanged((user) => {

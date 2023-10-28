@@ -7,11 +7,6 @@ import { AuthService } from '../services/on-auth.service';
   styleUrls: ['./home-content.component.css']
 })
 export class HomeContentComponent {
-  isMenuActive: boolean = false;
   constructor(public auth: AuthService) { }
-
-  toggleMenu() {
-      this.isMenuActive = !this.isMenuActive;
-  }
 
 }

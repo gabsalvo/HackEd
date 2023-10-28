@@ -9,11 +9,13 @@ import { ExercisesComponent } from './exercises/exercises.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { AuthDevComponent } from './auth-dev/auth-dev.component';
 
 const routes: Routes = [
   { path: 'offline', component: OfflinePageComponent },
   { path: '', component: HomeContentComponent },
   { path: 'auth', component: AuthComponent },
+  { path: 'authdev', component: AuthDevComponent },
   { path: 'code', component: CodeEditorComponent },
   { path: 'user', component: UserComponent },
   { path: 'trophies', component: TrophiesComponent },

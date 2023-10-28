@@ -19,12 +19,6 @@ export class CodeEditorComponent {
   isProcessing: boolean = false;
   currentTab: 'instructions' | 'output' = 'instructions';
 
-  isMenuActive: boolean = false;
-
-  toggleMenu() {
-    this.isMenuActive = !this.isMenuActive;
-  }
-
   constructor(public auth: AuthService, private serverService: CustomServerService) {}
 
   runCode(): void {
@@ -81,9 +75,8 @@ export class CodeEditorComponent {
     const solvedExercises = userSnapshot.get('solved_exercises') || [];
     const percentageProgression = userSnapshot.get('percentage') || 0;
 
-    // Verifica se l'esercizio è già stato risolto dall'utente
+  
     if (!solvedExercises.includes(exerciseId)) {
-      // Aggiorna i contatori e l'elenco degli esercizi risolti
       await updateDoc(userRef, {
         exp: currentExperience + 50,
         exercises_solved: currentSolvedCount + 1,

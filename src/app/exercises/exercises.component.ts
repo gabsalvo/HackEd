@@ -116,12 +116,6 @@ export class ExercisesComponent implements OnInit {
     { name: 'Exercise 10' },
   ];
 
-  isMenuActive: boolean = false;
-
-  toggleMenu() {
-    this.isMenuActive = !this.isMenuActive;
-  }
-
   createBoxes() {
     let arr = [];
     for (let i = 0; i < 20; i++) {

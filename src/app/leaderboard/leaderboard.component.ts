@@ -7,11 +7,6 @@ import { AuthService } from 'src/app/services/on-auth.service';
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent {
-  isMenuActive: boolean = false;
-
-  toggleMenu() {
-    this.isMenuActive = !this.isMenuActive;
-  }
 
   constructor(public auth: AuthService) {}
 

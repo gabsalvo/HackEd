@@ -16,13 +16,13 @@ export class HelloSecurityComponent {
 
   ngOnInit(): void {
     // Carica le istruzioni da un file .md
-    this.http.get('assets/helloSecurityInstructions.md', { responseType: 'text' })
+    this.http.get('assets/exercises/1/helloSecurityInstructions.md', { responseType: 'text' })
       .subscribe(data => {
         this.helloSecurityInstructions = data;
       });
 
     // Carica il codice predefinito da un file .c
-    this.http.get('assets/hello-securityCode.c', { responseType: 'text' })
+    this.http.get('assets/exercises/1/hello-securityCode.c', { responseType: 'text' })
       .subscribe(data => {
         this.defaultCode = data;
       });

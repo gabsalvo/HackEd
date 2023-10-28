@@ -7,11 +7,6 @@ import { AuthService } from '../services/on-auth.service';
   styleUrls: ['./trophies.component.css']
 })
 export class TrophiesComponent {
-  isMenuActive: boolean = false;
-
-  toggleMenu() {
-    this.isMenuActive = !this.isMenuActive;
-  }
 
   constructor(public auth: AuthService) {}
 
