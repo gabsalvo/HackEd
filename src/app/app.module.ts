@@ -16,7 +16,6 @@ import { MarkdownModule } from 'ngx-markdown';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
-import { AuthDevComponent } from './auth-dev/auth-dev.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 
@@ -31,7 +30,6 @@ import { OfflinePageComponent } from './offline-page/offline-page.component';
     HelloSecurityComponent,
     TrophiesComponent,
     LeaderboardComponent,
-    AuthDevComponent,
     NavbarComponent,
     OfflinePageComponent,
   ],

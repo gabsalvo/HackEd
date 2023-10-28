@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   auth,
   db,
-  loginWithGoogle,
+  loginWithGoogleDev,
   logoutFromGoogle,
 } from '../../../firebase.config';
 import { AuthService } from '../services/on-auth.service';
@@ -12,12 +12,12 @@ import { doc, setDoc, getDoc, deleteDoc } from 'firebase/firestore';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css'],
+  styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
   getRandomUsername = getRandomUsername;
+  loginWithGoogleDev = loginWithGoogleDev;
   isLogged: boolean = false;
-  showUsernamePopup: boolean = false;
   username: string = '';
   clans: string[] = [
     'Binary Battlers',
@@ -41,25 +41,22 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  async onGoogleLogin() {
-    if (!this.isLogged) {
-      await loginWithGoogle(this.showUsernamePopupFunction.bind(this));
-      this.isLogged = true;
+  onClanSelected() {
+    if (this.selectedClan) {
+      this.clanSelected = true;
     }
   }
 
-  async onGoogleLogout() {
-    if (this.isLogged) {
-      await logoutFromGoogle();
-    }
+  async generateRandomUsername() {
+    this.username = await getRandomUsername();
+    console.log(this.username);
   }
 
-  showUsernamePopupFunction() {
-    this.showUsernamePopup = true;
-  }
-  async usernameToServer() {
+
+  async loginProcedure() {
+    await loginWithGoogleDev();
     console.log('Chiamata a usernameToServer() iniziata...');
-    const randomUsername = await getRandomUsername();
+    const randomUsername = this.username;
     console.log('Username ottenuto:', randomUsername);
     if (randomUsername) {
       if (auth.currentUser) {
@@ -85,7 +82,6 @@ export class AuthComponent implements OnInit {
         const updatedSnapshot = await getDoc(userRef);
         console.log(updatedSnapshot.data());
         console.log('Scrittura nel database completata.');
-        this.showUsernamePopup = false;
       } else {
         console.error('No user uid found');
       }
@@ -94,55 +90,6 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  async saveUsername() {
-    if (this.username) {
-      if (auth.currentUser) {
-        const uid = auth.currentUser.uid;
-        const email = auth.currentUser.email;
-        const userRef = doc(db, 'users', uid);
-        await setDoc(
-          userRef,
-          {
-            email: email,
-            username: this.username,
-            registrationCompleted: true,
-            level: 1,
-            exercises_solved: 0,
-            clan: this.selectedClan,
-            exp: 0,
-            percentage: 0
-          },
-          { merge: true }
-        );
-        this.showUsernamePopup = false;
-      } else {
-        alert('No user uid found');
-      }
-    } else {
-      alert('Inserisci un username valido!');
-    }
-  }
 
-  onClanSelected() {
-    if (this.selectedClan) {
-      this.clanSelected = true;
-    }
-  }
-  
-  async abortLogin() {
-    if (auth.currentUser) {
-      const uid = auth.currentUser.uid;
-      const userRef = doc(db, 'users', uid);
-  
-      // Cancella l'utente dal database
-      await deleteDoc(userRef);
-  
-      // Logout dall'utente
-      await logoutFromGoogle();
-      this.isLogged = false;
-  
-      // Chiudi il popup
-      this.showUsernamePopup = false;
-    }
-  }
+
 }

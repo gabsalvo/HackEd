@@ -87,8 +87,6 @@ async function loginWithGoogleDev() {
 
     if (userSnapshot.get('registrationCompleted') !== true) {
       console.log(userSnapshot.get('registrationCompleted'));
-      console.log('Showing the popup...');
-
       // Incrementa il contatore degli studenti
       const studentCountRef = doc(db, 'metadata', 'student_count');
       await runTransaction(db, async (transaction) => {

@@ -1,26 +1,24 @@
 <app-navbar></app-navbar>
-<div class="authe">
-  <h1>Login</h1>
-  <button [disabled]="isLogged" (click)="onGoogleLogin()">Login con Google</button>
-  <button *ngIf="isLogged" (click)="onGoogleLogout()">Logout</button>
-
-  <!-- Popup per la selezione dell'username e del clan -->
-  <div *ngIf="showUsernamePopup" class="popup">
-    <button class="close-popup" (click)="abortLogin()">X</button>
-
+<div class="auth-container">
+    <h1>Welcome to HackEd</h1>
+    
+    <!-- Sezione di selezione del clan (sempre visibile) -->
     <h2>Choose Your Clan</h2>
-    <h3>Careful It can't be Changed</h3>
     <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
-      <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
+        <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
     </select>
-
-    <div *ngIf="clanSelected"> <!-- Mostra questa sezione solo se un clan è stato selezionato -->
-      <h2>Pick an Username</h2>
-      <input type="text" [(ngModel)]="username" placeholder="Inserisci username" />
-      <button (click)="saveUsername()">Salva</button>
-      <h2>Give me a Random One</h2>
-      <button (click)="usernameToServer()">Random</button>
+    
+    <!-- Sezione di generazione e visualizzazione dell'username (visibile una volta selezionato un clan) -->
+    <div *ngIf="selectedClan">
+      <h2>Your Random Username</h2>
+      <button (click)="generateRandomUsername()">Generate Random Username</button>
+      <p *ngIf="username">Your username: <strong>{{ username }}</strong></p>
+      <p *ngIf="username">Your clan: <strong>{{ selectedClan }}</strong></p>
     </div>
     
-  </div>
+    <!-- Sezione di login (il pulsante di login è disabilitato finché non viene generato un username) -->
+    <div *ngIf="selectedClan">
+      <h2>Ready to Join HackEd?</h2>
+      <button [disabled]="!username" (click)="loginProcedure()">Login with Google</button>
+    </div>
 </div>
