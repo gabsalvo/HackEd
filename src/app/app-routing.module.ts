@@ -7,7 +7,6 @@ import { UserComponent } from './user/user.component';
 import { ExercisesComponent } from './exercises/exercises.component';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 
 const routes: Routes = [
@@ -17,7 +16,6 @@ const routes: Routes = [
   { path: 'code', component: CodeEditorComponent },
   { path: 'user', component: UserComponent },
   { path: 'trophies', component: TrophiesComponent },
-  { path: 'leaderboard', component: LeaderboardComponent },
   { path: 'exercises', component: ExercisesComponent },
   { path: 'exercises/1-hello-security', component: HelloSecurityComponent },
 ];
