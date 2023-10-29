@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1698439413004,
+  "timestamp": 1698528632206,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -14,7 +14,7 @@
         "/favicon.ico",
         "/firebase-messaging-sw.js",
         "/index.html",
-        "/main.aad931aabc0610a6.js",
+        "/main.37520d966c55398a.js",
         "/manifest.webmanifest",
         "/polyfills.e68c327475c65644.js",
         "/runtime.4a5325b69dff7865.js",
@@ -30,8 +30,9 @@
         "ignoreVary": true
       },
       "urls": [
-        "/assets/hello-securityCode.c",
-        "/assets/helloSecurityInstructions.md",
+        "/assets/award.png",
+        "/assets/exercises/1/hello-securityCode.c",
+        "/assets/exercises/1/helloSecurityInstructions.md",
         "/assets/icons/icon-128x128.png",
         "/assets/icons/icon-144x144.png",
         "/assets/icons/icon-152x152.png",
@@ -1421,7 +1422,8 @@
         "/assets/monaco/min/vs/language/typescript/tsWorker.js",
         "/assets/monaco/min/vs/loader.js",
         "/assets/monaco/monaco.d.ts",
-        "/assets/monaco/package.json"
+        "/assets/monaco/package.json",
+        "/assets/trophy.png"
       ],
       "patterns": []
     }
@@ -1443,8 +1445,9 @@
     }
   ],
   "hashTable": {
-    "/assets/hello-securityCode.c": "294e9f9b347c00cd6d96acca2a5be4a34e75aa10",
-    "/assets/helloSecurityInstructions.md": "58816193367ad88c54f1c343fefaa79b76cc9e7a",
+    "/assets/award.png": "e71edd39f0381e877f12d1bbe1f8e2dd60ad924a",
+    "/assets/exercises/1/hello-securityCode.c": "294e9f9b347c00cd6d96acca2a5be4a34e75aa10",
+    "/assets/exercises/1/helloSecurityInstructions.md": "58816193367ad88c54f1c343fefaa79b76cc9e7a",
     "/assets/icons/icon-128x128.png": "b1f06c7d714abb4a0cc4d1f7c954feb26826e4c4",
     "/assets/icons/icon-144x144.png": "96a0d629765c1bc85d9263c6bc83094ca776d267",
     "/assets/icons/icon-152x152.png": "b1fbbee3902eb96a7658e3bb006f31f78ca5a44c",
@@ -2835,10 +2838,11 @@
     "/assets/monaco/min/vs/loader.js": "28079428374c287fa833c7e96279f5a648a308d2",
     "/assets/monaco/monaco.d.ts": "1a3cc111bda6002cb6de5ef62bd36c4ee9b934d2",
     "/assets/monaco/package.json": "4ff76d0593c665f7076cd7d30f2746b685bff11c",
+    "/assets/trophy.png": "2aaeac71d1f7841eeab99a871f31cbe49311f06e",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/firebase-messaging-sw.js": "3d2a8e6d45918f2c06d605abb16c6da21a55b202",
-    "/index.html": "ec5e66f310ac2eddf2ccdc5fbc8bf8de2c8479af",
-    "/main.aad931aabc0610a6.js": "7057adad9c1cee7ca759af306733ffb3de99fd9f",
+    "/firebase-messaging-sw.js": "f560b3f0287792ef49653265e550f1cf1b5419d1",
+    "/index.html": "7d97f442e10c934bef91014460bd7e346eaf00af",
+    "/main.37520d966c55398a.js": "a195a0e7fad8ce8212e07f920874c46d998d6cf8",
     "/manifest.webmanifest": "995292bc466d913777993400f03fd20dade5170b",
     "/polyfills.e68c327475c65644.js": "65467884d8b0c9c8d5fe6f80adb4de8a40b12cbd",
     "/runtime.4a5325b69dff7865.js": "f8669bd81004f4eecdf9964414f829713d593324",

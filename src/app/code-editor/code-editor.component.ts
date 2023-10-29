@@ -50,7 +50,6 @@ export class CodeEditorComponent {
 
       if (dbSolution.trim() === userSolution.trim()) {
         sendNotification();
-        this.trophyService.checkTrophy(this.idTrophy)
         console.log('You got it!!!');
         if (auth.currentUser) {
           await this.updateExperienceAndSolvedExercises(

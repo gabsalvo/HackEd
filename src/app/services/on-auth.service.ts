@@ -16,7 +16,7 @@ export class AuthService {
 
   constructor() {
     onAuthStateChanged(auth, (user) => {
-      console.log("User: ", user); // <-- Aggiungi questa riga
+      console.log("User: ", user);
       if (user) {
         this.userSubject.next(user);
       } else {
@@ -27,5 +27,9 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.userSubject.value;
+  }
+
+  getUserUid(): string | '' {
+    return this.userSubject.value?.uid || '';
   }
 }

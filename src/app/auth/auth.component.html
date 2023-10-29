@@ -1,30 +1,34 @@
 <app-navbar></app-navbar>
 <div class="auth-container" *ngIf="!isLogged">
-    <h1>Welcome to HackEd</h1>
-    
-    <!-- Sezione di selezione del clan (sempre visibile) -->
-    <h2>Choose Your Clan</h2>
-    <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
-        <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
-    </select>
+  <h1>Welcome to HackEd</h1>
+  <br>
+  <br>
+  <br>
+ 
+  <!-- Sezione di selezione del clan (sempre visibile) -->
+  <h2>Register</h2>
+  <h3>Choose Your Clan</h3>
+  <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
+    <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
+  </select>
+  <br>
+  <!-- Sezione di generazione e visualizzazione dell'username (visibile una volta selezionato un clan) -->
+  <div *ngIf="selectedClan">
+    <h2>Your Random Username</h2>
+    <button (click)="generateRandomUsername()">Generate Random Username</button>
+    <p *ngIf="username">Your username: <strong>{{ username }}</strong></p>
+    <p *ngIf="username">Your clan: <strong>{{ selectedClan }}</strong></p>
+  </div>
+  <br>
+  <!-- Sezione di login (il pulsante di login è disabilitato finché non viene generato un username) -->
+  <div *ngIf="selectedClan">
+    <h2>Ready to Join HackEd?</h2>
+    <button [disabled]="!username" (click)="loginProcedure()">Register with Google</button>
+  </div>
 
-    <br>
-    <br>
+  <br>
+  <br>
 
-    <h2>Already registered?</h2>
-    <button (click)="loginWithGoogleDev()">Login</button>
-    
-    <!-- Sezione di generazione e visualizzazione dell'username (visibile una volta selezionato un clan) -->
-    <div *ngIf="selectedClan">
-      <h2>Your Random Username</h2>
-      <button (click)="generateRandomUsername()">Generate Random Username</button>
-      <p *ngIf="username">Your username: <strong>{{ username }}</strong></p>
-      <p *ngIf="username">Your clan: <strong>{{ selectedClan }}</strong></p>
-    </div>
-    
-    <!-- Sezione di login (il pulsante di login è disabilitato finché non viene generato un username) -->
-    <div *ngIf="selectedClan">
-      <h2>Ready to Join HackEd?</h2>
-      <button [disabled]="!username" (click)="loginProcedure()">Register with Google</button>
-    </div>
+  <h2>Coming Back?</h2>
+  <button (click)="loginWithGoogleDev()">Login</button>
 </div>

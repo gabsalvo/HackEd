@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../../firebase.config';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,7 @@ export class TrophyService {
     {
       id: 1,
       description: 'Risolvi il primo esercizio',
-      requirement: 'Total: 150',
+      requirement: 'hello-security',
       unlocked: false,
       iconURL: '/assets/trophy.png',
     },
@@ -44,13 +46,21 @@ export class TrophyService {
     },
   ];
 
-  checkTrophy(id: number) {
-    switch (id) {
-      case 1:
-        this.trophies[0].unlocked = true;
-        break;
-      default:
-        console.log('Trofeo non riconosciuto.');
+  async isExerciseSolvedByUser(userId: string, exerciseName: string): Promise<boolean> {
+    try {
+      const userRef = doc(db, 'users', userId);
+      const userSnapshot = await getDoc(userRef);
+      const solvedExercises = userSnapshot.get('solved_exercises') || [];
+
+      return solvedExercises.includes(exerciseName);
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  }
+  async updateTrophiesForUser(userId: string) {
+    for (const trophy of this.trophies) {
+      trophy.unlocked = await this.isExerciseSolvedByUser(userId, trophy.requirement);
     }
   }
 }
