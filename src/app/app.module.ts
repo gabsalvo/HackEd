@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MarkdownModule } from 'ngx-markdown';
 import { HelloSecurityComponent } from './exercises/1-hello-security/1-hello-security.component';
 import { TrophiesComponent } from './trophies/trophies.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { TrophiesPageComponent } from './trophies/trophies-page/trophies-page.component';
@@ -30,7 +29,6 @@ import { TrophiesPageComponent } from './trophies/trophies-page/trophies-page.co
     UserComponent,
     HelloSecurityComponent,
     TrophiesComponent,
-    LeaderboardComponent,
     NavbarComponent,
     OfflinePageComponent,
     TrophiesPageComponent,
