@@ -1,27 +1,41 @@
-# HackEd
+# HackEd - Cybersecurity Learning Platform
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
+![Hacked](https://img.shields.io/badge/Version-1.0-blue.svg)
+![Hacked](https://img.shields.io/badge/License-MIT-green.svg)
 
-## Development server
+**HackEd** is a web-based learning platform designed to help you develop skills in cybersecurity. Unlike other platforms, we focus on hands-on practice by solving specific cybersecurity exercises. A strong knowledge of C and Python is required.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Access and Usage
 
-## Code scaffolding
+You can access **HackEd** directly at [hacked23-24.web.app](https://hacked23-24.web.app). No installation is required as it is a Progressive Web App (PWA).
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+After logging in, you can use the platform to solve exercises and enhance your cybersecurity skills.
 
-## Build
+## Project Structure
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**HackEd** is developed as a classic web app with an Angular frontend. The project utilizes various languages and technologies, including:
 
-## Running unit tests
+- Angular
+- TypeScript
+- JavaScript
+- HTML
+- Bulma CSS
+- Node.js (for the server)
+- Firebase (for cloud functions and notifications)
+- Monaco Editor (for code viewing)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Contribute
 
-## Running end-to-end tests
+If you wish to contribute to **HackEd**, you can fork the project and add new features. We would be happy to review your changes and have you join our cybersecurity learning effort.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## License
 
-## Further help
+This project is distributed under the MIT license. For more details, please refer to the [LICENSE](LICENSE) file.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contact
+
+**HackEd** is created by Gabriele Salvo. If you have questions or need assistance, feel free to get in touch.
+
+---
+
+**Note:** This is an initial draft of the README. Further modifications and specific updates will be required as the project evolves.
