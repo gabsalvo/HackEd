@@ -3,6 +3,7 @@ import {
   auth,
   db,
   loginWithGoogleDev,
+  registerWithGoogleDev
 } from '../../../firebase.config';
 import { AuthService } from '../services/on-auth.service';
 import { getRandomUsername } from 'randomUsername';
@@ -55,8 +56,8 @@ export class AuthComponent implements OnInit {
   }
 
 
-  async loginProcedure() {
-    await loginWithGoogleDev();
+  async registerProcedure() {
+    await registerWithGoogleDev();
     console.log('Chiamata a usernameToServer() iniziata...');
     const randomUsername = this.username;
     console.log('Username ottenuto:', randomUsername);

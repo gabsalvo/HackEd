@@ -1,34 +1,41 @@
 <app-navbar></app-navbar>
+
 <div class="auth-container" *ngIf="!isLogged">
-  <h1>Welcome to HackEd</h1>
-  <br>
-  <br>
-  <br>
- 
-  <!-- Sezione di selezione del clan (sempre visibile) -->
-  <h2>Register</h2>
-  <h3>Choose Your Clan</h3>
-  <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
-    <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
-  </select>
-  <br>
-  <!-- Sezione di generazione e visualizzazione dell'username (visibile una volta selezionato un clan) -->
-  <div *ngIf="selectedClan">
-    <h2>Your Random Username</h2>
-    <button (click)="generateRandomUsername()">Generate Random Username</button>
-    <p *ngIf="username">Your username: <strong>{{ username }}</strong></p>
-    <p *ngIf="username">Your clan: <strong>{{ selectedClan }}</strong></p>
-  </div>
-  <br>
-  <!-- Sezione di login (il pulsante di login è disabilitato finché non viene generato un username) -->
-  <div *ngIf="selectedClan">
-    <h2>Ready to Join HackEd?</h2>
-    <button [disabled]="!username" (click)="loginProcedure()">Register with Google</button>
-  </div>
+    <h1 class="title has-text-centered">Welcome to HackEd</h1>
 
-  <br>
-  <br>
+    <div class="columns is-centered is-8">
+        <!-- Registration Section -->
+        <div class="column has-border-right pl-10 has-text-centered"> 
+            <h2 class="subtitle">Register</h2>
+            
+            <div class="field">
+                <label class="label">Choose Your Clan</label>
+                <div class="control">
+                    <div class="select">
+                        <select [(ngModel)]="selectedClan" (change)="onClanSelected()">
+                            <option *ngFor="let clan of clans" [value]="clan">{{clan}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
 
-  <h2>Coming Back?</h2>
-  <button (click)="loginWithGoogleDev()">Login</button>
+            <div *ngIf="selectedClan">
+                <h2 class="subtitle">Your Random Username</h2>
+                <button class="button is-primary" (click)="generateRandomUsername()">Generate Random Username</button>
+                <p *ngIf="username" class="mt-3">Your username: <strong>{{ username }}</strong></p>
+                <p *ngIf="username">Your clan: <strong>{{ selectedClan }}</strong></p>
+            </div>
+
+            <div *ngIf="selectedClan" class="mt-4">
+                <h2 class="subtitle">Ready to Join HackEd?</h2>
+                <button [disabled]="!username" class="button is-success" (click)="registerProcedure()">Register with Google</button>
+            </div>
+        </div>
+
+        <!-- Login Section -->
+        <div class="column pl-5 has-text-centered">
+            <h2 class="subtitle">Coming Back?</h2>
+            <button class="button is-info" (click)="loginWithGoogleDev()">Login</button>
+        </div>
+    </div>
 </div>

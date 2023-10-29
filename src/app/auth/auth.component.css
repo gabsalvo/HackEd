@@ -1,0 +1,5 @@
+.has-border-right {
+    border-right: 1px solid #d5d5d5; /* O il colore che preferisci */
+    padding-right: 1.5rem; /* Aumenta lo spazio interno a destra */
+    margin-right: 1.5rem; /* Aggiungi margine a destra per bilanciare */
+}

@@ -1,2 +1,6 @@
 <app-navbar></app-navbar>
+<h1 class="is-size-2 has-text-centered" *ngIf="userName; else strangerTitle">{{userName}}'s Trophies cabinet</h1>
+<ng-template #strangerTitle>
+  <h1 class="is-size-2 has-text-centered">Stranger's Trophies cabinet</h1>
+</ng-template>
 <app-trophies-page></app-trophies-page>

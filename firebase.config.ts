@@ -14,6 +14,7 @@ import {
   doc,
   setDoc,
   getDoc,
+  deleteDoc,
   runTransaction,
 } from 'firebase/firestore';
 
@@ -42,6 +43,32 @@ function delay(ms: number): Promise<void> {
 
 
 async function loginWithGoogleDev() {
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+    console.log('Logged in user:', user);
+
+    const userRef = doc(db, 'users', user.uid);
+
+    await delay(2500);
+
+    const userSnapshot = await getDoc(userRef);
+
+    if (userSnapshot.get('registrationCompleted') !== true) {
+      console.log(userSnapshot.get('registrationCompleted'));
+      alert('Per favore, completare la registrazione prima di accedere.');
+
+      // Cancellare i dati dell'utente (se necessario)
+      await deleteDoc(userRef);
+
+      await deleteUser(user);
+    }
+  } catch (error) {
+    console.error('Error logging in:', error);
+  }
+}
+
+async function registerWithGoogleDev() {
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
@@ -212,6 +239,7 @@ onMessage(messaging, (payload) => {
   }
 });
 
+export { registerWithGoogleDev };
 export { loginWithGoogleDev };
 export { logoutFromGoogle };
 export { getNotificationPermission };
