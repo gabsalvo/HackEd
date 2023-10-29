@@ -1,8 +1,82 @@
 <app-navbar></app-navbar>
-<h1>
-  Hello {{ name }}
-</h1>
-<button *ngIf="name !== 'Stranger!'" (click)="deleteUser()">Delete User</button>
-<button *ngIf="name !== 'Stranger!'" (click)="logoutFromGoogle()">Logout</button>
-<button *ngIf="name === 'Stranger!'" (click)="navigate()">Login</button>
+<section class="section reduced-padding">
+  <div class="container">
+    <h1 class="title">
+      Hello, {{ username }}
+    </h1>
+    <div class="buttons are-centered">
+      <button class="button is-danger" *ngIf="username !== 'Stranger!'" (click)="deleteUser()">
+        Delete User
+      </button>
+      <button class="button is-info" *ngIf="username !== 'Stranger!'" (click)="logoutFromGoogle()">
+        Logout
+      </button>
+      <button class="button is-primary" *ngIf="username === 'Stranger!'" (click)="navigate()">
+        Login
+      </button>
+    </div>
+  </div>
+</section>
 
+<section class="section reduced-padding">
+  <div class="container">
+
+      <section class="section">
+        <div class="container">
+          <div class="box">
+            <h1 class="title is-4">User Profile</h1>
+            <div class="field">
+              <label class="label">Username</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Nome utente" [(ngModel)]="username" [readonly]="!editable">
+                <button class="button is-small" *ngIf="!editable" (click)="editUsername()">Modifica</button>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input class="input" type="email" placeholder="Email" value="{{ email }}" readonly>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Clan</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Nome Clan" value="{{ clan }}" readonly>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Level</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="Livello" value="{{ level }}" readonly>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Experience Points (exp)</label>
+              <div class="control">
+                <input class="input" type="text" placeholder="exp" value="{{ exp }}" readonly>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Percentage of completion</label>
+              <progress class="progress is-primary" value="{{ percentage }}" max="100">{{ percentage }}%</progress>
+            </div>
+
+            <div class="field">
+              <label class="label">Solved Exercises</label>
+              <ul>
+                <li *ngFor="let exercise of solved_exercises">{{ exercise }}</li>
+              </ul>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button class="button is-primary" *ngIf="username !== 'Stranger!'" (click)="saveUsername()">Salva</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</section>
