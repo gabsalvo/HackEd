@@ -13,7 +13,7 @@ After logging in, you can use the platform to solve exercises and enhance your c
 
 ## Project Structure
 
-**HackEd** is developed as a classic web app with an Angular frontend. The project utilizes various languages and technologies, including:
+**HackEd** is developed as a web app (PWA) with an Angular frontend. The project utilizes various languages and technologies, including:
 
 - Angular
 - TypeScript
@@ -21,7 +21,7 @@ After logging in, you can use the platform to solve exercises and enhance your c
 - HTML
 - Bulma CSS
 - Node.js (for the server)
-- Firebase (for cloud functions and notifications)
+- Firebase (for cloud functions, notifications, auth and firestore)
 - Monaco Editor (for code viewing)
 
 ## Contribute

@@ -1,1 +1,14 @@
-<p>offline-page works!</p>
+<div>
+    <h1>Debug the Code!</h1>
+    <p>{{ instructions }}</p>
+    
+    <ngx-monaco-editor [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+    
+    <button (click)="checkSolution()">Controlla la Soluzione</button>
+  
+    <div *ngIf="feedback">
+      <h2>Feedback</h2>
+      <p>{{ feedback }}</p>
+    </div>
+  </div>
+  
