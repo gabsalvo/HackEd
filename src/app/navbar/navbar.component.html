@@ -15,7 +15,6 @@
   
         <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isMenuActive">
             <div class="navbar-start">
-                <a class="navbar-item" href="/leaderboard">Leaderboard</a>
                 <a class="navbar-item" href="/trophies">Trophies</a>
                 <a *ngIf="!authService.isLoggedIn()" class="navbar-item" href="/user">Profile</a>
                 <a class="navbar-item" href="/exercises">Exercises</a>
