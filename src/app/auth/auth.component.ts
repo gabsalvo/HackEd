@@ -3,18 +3,17 @@ import {
   auth,
   db,
   loginWithGoogleDev,
-  registerWithGoogleDev
+  registerWithGoogleDev,
 } from '../../../firebase.config';
 import { AuthService } from '../services/on-auth.service';
 import { getRandomUsername } from 'randomUsername';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  styleUrls: ['./auth.component.css'],
 })
 export class AuthComponent implements OnInit {
   getRandomUsername = getRandomUsername;
@@ -29,7 +28,6 @@ export class AuthComponent implements OnInit {
   ];
   selectedClan: string = '';
   clanSelected: boolean = false;
-
 
   constructor(public authService: AuthService, private router: Router) {}
 
@@ -55,7 +53,6 @@ export class AuthComponent implements OnInit {
     console.log(this.username);
   }
 
-
   async registerProcedure() {
     await registerWithGoogleDev();
     console.log('Chiamata a usernameToServer() iniziata...');
@@ -78,7 +75,7 @@ export class AuthComponent implements OnInit {
             clan: this.selectedClan,
             exp: 0,
             solved_exercises: [],
-            percentage: 0
+            percentage: 0,
           },
           { merge: true }
         );

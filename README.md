@@ -11,6 +11,16 @@ You can access **HackEd** directly at [hacked23-24.web.app](https://hacked23-24.
 
 After logging in, you can use the platform to solve exercises and enhance your cybersecurity skills.
 
+## Use Me locally
+
+git clone https://github.com/gabsalvo/HackEd.git
+
+cd HackEd
+
+npm install
+
+ng serve
+
 ## Project Structure
 
 **HackEd** is developed as a web app (PWA) with an Angular frontend. The project utilizes various languages and technologies, including:

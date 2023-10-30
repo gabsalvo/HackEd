@@ -11,6 +11,9 @@
 		},
 		{
 			"path": "../../Documents/Dunamis/Blog"
+		},
+		{
+			"path": "../Java"
 		}
 	],
 	"settings": {}
