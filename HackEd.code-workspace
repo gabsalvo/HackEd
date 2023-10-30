@@ -5,6 +5,12 @@
 		},
 		{
 			"path": "../Server"
+		},
+		{
+			"path": "../gabsalvo.github.io"
+		},
+		{
+			"path": "../../Documents/Dunamis/Blog"
 		}
 	],
 	"settings": {}
