@@ -26,3 +26,10 @@ jobs:
           projectId: hacked23-24
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+      - name: Deploy to Firebase Production
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: hacked23-24
+          targets: "production"
