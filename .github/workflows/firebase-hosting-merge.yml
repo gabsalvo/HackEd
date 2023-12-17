@@ -26,10 +26,10 @@ jobs:
           projectId: hacked23-24
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
-      - name: Deploy to Firebase Production
-        uses: FirebaseExtended/action-hosting-deploy@v0
+       - name: Set up Google Cloud
+        uses: google-github-actions/setup-gcloud@master
         with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
-          projectId: hacked23-24
-          targets: "production"
+          service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+          project_id: hacked23-24
+      - name: Deploy to Firebase Production
+        run: npx firebase-tools deploy --only hosting --project hacked23-24

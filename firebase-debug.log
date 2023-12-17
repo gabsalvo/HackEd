@@ -28,3 +28,17 @@
 [debug] [2023-12-17T13:14:11.344Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/hacked23-24/serviceAccounts/hacked23-24@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
 [debug] [2023-12-17T13:14:11.347Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hacked23-24 [none]
 [debug] [2023-12-17T13:14:11.858Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hacked23-24 200
+[debug] [2023-12-17T13:44:36.473Z] ----------------------------------------------------------------------
+[debug] [2023-12-17T13:44:36.481Z] Command:       /usr/bin/node-18 /usr/local/bin/firebase login:ci
+[debug] [2023-12-17T13:44:36.482Z] CLI Version:   12.7.0
+[debug] [2023-12-17T13:44:36.483Z] Platform:      linux
+[debug] [2023-12-17T13:44:36.484Z] Node Version:  v18.19.0
+[debug] [2023-12-17T13:44:36.485Z] Time:          Sun Dec 17 2023 14:44:36 GMT+0100 (Central European Standard Time)
+[debug] [2023-12-17T13:44:36.485Z] ----------------------------------------------------------------------
+[debug] 
+[warn] ⚠  Authenticating with a `login:ci` token is deprecated and will be removed in a future major version of `firebase-tools`. Instead, use a service account key with `GOOGLE_APPLICATION_CREDENTIALS`: https://cloud.google.com/docs/authentication/getting-started 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=968319833&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
