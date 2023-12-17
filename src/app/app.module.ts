@@ -18,6 +18,7 @@ import { TrophiesComponent } from './trophies/trophies.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { TrophiesPageComponent } from './trophies/trophies-page/trophies-page.component';
+import { MultiplayerComponent } from './multiplayer/multiplayer.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TrophiesPageComponent } from './trophies/trophies-page/trophies-page.co
     NavbarComponent,
     OfflinePageComponent,
     TrophiesPageComponent,
+    MultiplayerComponent,
   ],
   exports: [CodeEditorComponent],
   imports: [
