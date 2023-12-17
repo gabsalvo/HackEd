@@ -27,7 +27,7 @@ jobs:
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
       - name: Set up Google Cloud
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@main
         with:
           service_account_key: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
           project_id: hacked23-24
