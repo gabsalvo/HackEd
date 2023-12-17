@@ -7,13 +7,16 @@
 			"path": "../Server"
 		},
 		{
-			"path": "../gabsalvo.github.io"
-		},
-		{
 			"path": "../../Documents/Dunamis/Blog"
 		},
 		{
 			"path": "../Java"
+		},
+		{
+			"path": "../gabsalvo.github.io"
+		},
+		{
+			"path": "../../Downloads"
 		}
 	],
 	"settings": {}

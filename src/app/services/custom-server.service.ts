@@ -14,7 +14,7 @@ export class CustomServerService {
   async handleCompile(
     code: string,
     customInput: string,
-    languageId: number
+    languageId: number,
   ): Promise<string> {
     const requestBody = {
       code: code,
@@ -28,7 +28,7 @@ export class CustomServerService {
 
     try {
       const response: any = await firstValueFrom(
-        this.http.post(this.API_ENDPOINT, requestBody, { headers: headers })
+        this.http.post(this.API_ENDPOINT, requestBody, { headers: headers }),
       );
       if (response && response.output) {
         return response.output;

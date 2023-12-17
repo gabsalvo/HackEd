@@ -29,7 +29,10 @@ export class AuthComponent implements OnInit {
   selectedClan: string = '';
   clanSelected: boolean = false;
 
-  constructor(public authService: AuthService, private router: Router) {}
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+  ) {}
 
   ngOnInit(): void {
     this.authService.user$.subscribe((user) => {
@@ -77,7 +80,7 @@ export class AuthComponent implements OnInit {
             solved_exercises: [],
             percentage: 0,
           },
-          { merge: true }
+          { merge: true },
         );
         const updatedSnapshot = await getDoc(userRef);
         console.log(updatedSnapshot.data());
