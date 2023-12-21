@@ -21,6 +21,10 @@ npm install
 
 ng serve
 
+## EXTRA FEATURES (socket-chat-angular library)
+
+You can use the chat-feature if you set up the server and chaange the chat.service at this [repo](https://github.com/gabsalvo/Socket-Chat-Angular/)
+
 ## Project Structure
 
 **HackEd** is developed as a web app (PWA) with an Angular frontend. The project utilizes various languages and technologies, including:
