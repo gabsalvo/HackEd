@@ -19,6 +19,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { TrophiesPageComponent } from './trophies/trophies-page/trophies-page.component';
 import { MultiplayerComponent } from './multiplayer/multiplayer.component';
+import { ChatLibModule } from '@gabriele-salvo/socket-chat-angular';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { MultiplayerComponent } from './multiplayer/multiplayer.component';
   exports: [CodeEditorComponent],
   imports: [
     BrowserModule,
-    EditorModule, 
+    EditorModule,
     MonacoEditorModule.forRoot(),
     FormsModule,
     MarkdownModule.forRoot(),
@@ -48,11 +49,12 @@ import { MultiplayerComponent } from './multiplayer/multiplayer.component';
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    })
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
+    ChatLibModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-export class CodeEditorModule { }
+export class AppModule {}
+export class CodeEditorModule {}
