@@ -18,7 +18,6 @@ import { TrophiesComponent } from './trophies/trophies.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { OfflinePageComponent } from './offline-page/offline-page.component';
 import { TrophiesPageComponent } from './trophies/trophies-page/trophies-page.component';
-import { MultiplayerComponent } from './multiplayer/multiplayer.component';
 import { ChatLibModule } from '@gabriele-salvo/socket-chat-angular';
 
 @NgModule({
@@ -34,7 +33,6 @@ import { ChatLibModule } from '@gabriele-salvo/socket-chat-angular';
     NavbarComponent,
     OfflinePageComponent,
     TrophiesPageComponent,
-    MultiplayerComponent,
   ],
   exports: [CodeEditorComponent],
   imports: [
