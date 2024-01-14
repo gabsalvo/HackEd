@@ -23,7 +23,7 @@ ng serve
 
 ## EXTRA FEATURES (socket-chat-angular library)
 
-You can use the chat-feature if you set up the server and chaange the chat.service at this [repo](https://github.com/gabsalvo/Socket-Chat-Angular/)
+You can use the chat-feature [online](hacked23-24.web.app/) if you set up the server the chat service at this [repo](https://github.com/gabsalvo/Socket-Chat-Angular/)
 
 ## Project Structure
 
