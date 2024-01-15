@@ -58,15 +58,12 @@ export class AuthComponent implements OnInit {
 
   async registerProcedure() {
     await registerWithGoogleDev();
-    console.log('Chiamata a usernameToServer() iniziata...');
     const randomUsername = this.username;
-    console.log('Username ottenuto:', randomUsername);
     if (randomUsername) {
       if (auth.currentUser) {
         const uid = auth.currentUser.uid;
         const email = auth.currentUser.email;
         const userRef = doc(db, 'users', uid);
-        console.log('Tentativo di scrittura nel database con UID:', uid);
         await setDoc(
           userRef,
           {
@@ -83,13 +80,7 @@ export class AuthComponent implements OnInit {
           { merge: true },
         );
         const updatedSnapshot = await getDoc(userRef);
-        console.log(updatedSnapshot.data());
-        console.log('Scrittura nel database completata.');
-      } else {
-        console.error('No user uid found');
       }
-    } else {
-      console.error('Errore nel generare un username casuale!');
     }
   }
 }

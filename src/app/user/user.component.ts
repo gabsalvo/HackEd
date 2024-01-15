@@ -21,7 +21,10 @@ export class UserComponent implements OnInit {
   solved_exercises: any;
   editable: boolean = false;
 
-  constructor(public authService: AuthService, private router: Router) {
+  constructor(
+    public authService: AuthService,
+    private router: Router,
+  ) {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.retrieveData();
@@ -47,70 +50,42 @@ export class UserComponent implements OnInit {
   }
 
   async saveUsername() {
-  if (auth.currentUser) {
-    const uid = auth.currentUser.uid;
-    const userRef = doc(db, 'users', uid);
-    await setDoc(userRef, { username: this.username }, { merge: true });
-    this.editable = false;
-  } else {
-    alert('No user uid found');
+    if (auth.currentUser) {
+      const uid = auth.currentUser.uid;
+      const userRef = doc(db, 'users', uid);
+      await setDoc(userRef, { username: this.username }, { merge: true });
+      this.editable = false;
+    } else {
+      alert('No user uid found');
+    }
   }
-}
-
 
   navigate() {
     this.router.navigate(['/auth']);
   }
 
-  async delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
   async retrieveData() {
-    if (auth.currentUser) {
+    if (!auth.currentUser) {
+      alert('No user uid found');
+      return;
+    }
+
+    try {
       const uid = auth.currentUser.uid;
       const userRef = doc(db, 'users', uid);
 
-      await this.delay(300); // Attendi per 300 millisecondi
-
       const userSnapshot = await getDoc(userRef);
-      if (userSnapshot.get('username')) {
-        this.username = userSnapshot.get('username');
-      } else {
-        this.username = 'Stranger!';
-      }
-      if (userSnapshot.get('clan')) {
-        this.clan = userSnapshot.get('clan');
-      } else {
-        this.clan = 'No clan!';
-      }
-      if (userSnapshot.get('exp')) {
-        this.exp = userSnapshot.get('exp');
-      } else {
-        this.exp = 'No exp';
-      }
-      if (userSnapshot.get('level')) {
-        this.level = userSnapshot.get('level');
-      } else {
-        this.level = 'No level';
-      }
-      if (userSnapshot.get('email')) {
-        this.percentage = userSnapshot.get('percentage');
-      } else {
-        this.percentage = 'No percentage';
-      }
-      if (userSnapshot.get('email')) {
-        this.email = userSnapshot.get('email');
-      } else {
-        this.email = 'Weird no Email';
-      }
-      if (userSnapshot.get('solved_exercises')) {
-        this.solved_exercises = userSnapshot.get('solved_exercises');
-      } else {
-        this.email = 'No exercises solved';
-      }
-    } else {
-      alert('No user uid found');
+
+      this.username = userSnapshot.get('username') || 'Stranger!';
+      this.clan = userSnapshot.get('clan') || 'No clan!';
+      this.exp = userSnapshot.get('exp') || 'No exp';
+      this.level = userSnapshot.get('level') || 'No level';
+      this.percentage = userSnapshot.get('percentage') || 'No percentage';
+      this.email = userSnapshot.get('email') || 'Weird no Email';
+      this.solved_exercises =
+        userSnapshot.get('solved_exercises') || 'No exercises solved';
+    } catch (error) {
+      console.error('Error retrieving user data:', error);
     }
   }
 
@@ -120,31 +95,17 @@ export class UserComponent implements OnInit {
       const uid = user.uid;
       const userRef = doc(db, 'users', uid);
 
-      // Verifica se l'utente esiste prima di cancellarlo
       const userSnapshot = await getDoc(userRef);
       if (userSnapshot.exists()) {
         try {
-          // Elimina i dati dell'utente dal database
           await deleteDoc(userRef);
-          console.log('User data for UID', uid, 'deleted successfully');
-
-          // Revoca il token di notifica
-          //await revokeNotificationToken();
-
-          // Effettua il logout
           await logoutFromGoogle();
-
-          // Rimuovi l'utente da Firebase Auth
           await user.delete();
-          console.log('User removed from Firebase Auth');
         } catch (error: any) {
-          console.error('Error during the delete user process:', error);
           if (error.details) {
             console.error('Error details:', error.details);
           }
         }
-      } else {
-        console.log('No data found for UID', uid);
       }
     } else {
       console.warn('No authenticated user found');

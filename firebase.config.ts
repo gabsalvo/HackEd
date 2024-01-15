@@ -40,8 +40,6 @@ function delay(ms: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-
-
 async function loginWithGoogleDev() {
   try {
     const result = await signInWithPopup(auth, provider);
@@ -55,10 +53,6 @@ async function loginWithGoogleDev() {
     const userSnapshot = await getDoc(userRef);
 
     if (userSnapshot.get('registrationCompleted') !== true) {
-      console.log(userSnapshot.get('registrationCompleted'));
-      alert('Per favore, completare la registrazione prima di accedere.');
-
-      // Cancellare i dati dell'utente (se necessario)
       await deleteDoc(userRef);
 
       await deleteUser(user);
@@ -81,7 +75,6 @@ async function registerWithGoogleDev() {
     const userSnapshot = await getDoc(userRef);
 
     if (userSnapshot.get('registrationCompleted') !== true) {
-      console.log(userSnapshot.get('registrationCompleted'));
       // Incrementa il contatore degli studenti
       const studentCountRef = doc(db, 'metadata', 'student_count');
       await runTransaction(db, async (transaction) => {
@@ -102,7 +95,6 @@ async function registerWithGoogleDev() {
 async function logoutFromGoogle() {
   try {
     await signOut(auth);
-    console.log('Logged out successfully');
   } catch (error) {
     console.error('Error logging out:', error);
   }
@@ -126,21 +118,21 @@ async function getNotificationPermission() {
               await setDoc(
                 userRef,
                 { notificationToken: currentToken },
-                { merge: true }
+                { merge: true },
               );
             } else {
               console.warn(
-                'Utente non autenticato. Non è possibile salvare il token.'
+                'Utente non autenticato. Non è possibile salvare il token.',
               );
             }
           } else {
-            console.log(
-              'No registration token available. Request permission to generate one.'
+            console.error(
+              'No registration token available. Request permission to generate one.',
             );
           }
         })
         .catch((err) => {
-          console.log('An error occurred while retrieving token. ', err);
+          console.error('An error occurred while retrieving token. ', err);
         });
     }
   } catch (error) {
@@ -160,10 +152,9 @@ async function sendNotification() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ uid: user.uid }),
-        }
+        },
       );
       const data = await response.json();
-      console.log(data);
     } else {
       console.warn('Utente non autenticato.');
     }
@@ -186,11 +177,9 @@ async function sendNotificationDelayed() {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({ uid: user.uid, delay: delay }),
-        }
+        },
       );
       const data = await response.json();
-      console.log(data);
-      console.log('bg data');
     } else {
       console.warn('Utente non autenticato.');
     }
@@ -205,21 +194,18 @@ async function removeUser() {
   if (auth.currentUser) {
     try {
       await deleteUser(auth.currentUser);
-      console.log('Utente eliminato con successo da Firebase Auth.');
     } catch (error) {
       console.error(
         "Errore durante l'eliminazione dell'utente da Firebase Auth:",
-        error
+        error,
       );
     }
   } else {
-    console.log('Nessun utente autenticato per essere eliminato.');
+    console.error('Nessun utente autenticato per essere eliminato.');
   }
 }
 
 onMessage(messaging, (payload) => {
-  console.log('Notifica da onMessage:', payload);
-
   if (payload.notification) {
     const notificationTitle =
       payload.notification.title || 'Titolo predefinito'; // default in caso sia undefined

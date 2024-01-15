@@ -1,8 +1,8 @@
 importScripts(
-  "https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"
+  "https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js",
 );
 importScripts(
-  "https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging-compat.js"
+  "https://www.gstatic.com/firebasejs/9.1.3/firebase-messaging-compat.js",
 );
 firebase.initializeApp({
   apiKey: "AIzaSyADljtJJVmWrxoQru7Z0K31BBcoAhC_t2M",
@@ -17,8 +17,6 @@ firebase.initializeApp({
 });
 const messaging = firebase.messaging();
 messaging.onBackgroundMessage((payload) => {
-  console.log("Ricevuto messaggio in background:", payload);
-
   // Personalizza la notifica visualizzata
   const notificationTitle = payload.notification.title;
   const notificationOptions = {
@@ -33,11 +31,11 @@ messaging.onBackgroundMessage((payload) => {
 const CACHE_NAME = "offline-cache";
 const OFFLINE_URL = "./app/offline-page/offline-page.component.html";
 
-self.addEventListener('install', function(event) {
+self.addEventListener("install", function (event) {
   event.waitUntil(
-      caches.open('my-cache-name').then(function(cache) {
-          return cache.add(OFFLINE_URL);
-      })
+    caches.open("my-cache-name").then(function (cache) {
+      return cache.add(OFFLINE_URL);
+    }),
   );
 });
 
@@ -46,31 +44,28 @@ self.addEventListener("fetch", function (event) {
     event.respondWith(
       fetch(event.request).catch(function () {
         return caches.match(OFFLINE_URL);
-      })
+      }),
     );
   } else {
     event.respondWith(
       fetch(event.request).catch(function () {
         return caches.match(event.request);
-      })
+      }),
     );
   }
 });
 
-self.addEventListener('push', function(event) {
+self.addEventListener("push", function (event) {
   if (event.data) {
     const payload = event.data.json();
-    console.log('Dati ricevuti:', payload);  // Aggiunto per il debugging
-    const title = payload.data.title || 'Notifica del service';
+    const title = payload.data.title || "Notifica del service";
     const options = {
-      body: payload.data.body || 'Body del service',
-      image: payload.data.image || '',
-      icon: payload.data.icon || '',
-      badge: payload.data.badge || '',
-      actions: JSON.parse(payload.data.actions || '[]'),
+      body: payload.data.body || "Body del service",
+      image: payload.data.image || "",
+      icon: payload.data.icon || "",
+      badge: payload.data.badge || "",
+      actions: JSON.parse(payload.data.actions || "[]"),
     };
-    event.waitUntil(
-      self.registration.showNotification(title, options)
-    );
+    event.waitUntil(self.registration.showNotification(title, options));
   }
 });
